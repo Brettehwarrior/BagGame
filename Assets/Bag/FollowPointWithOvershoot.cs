@@ -1,0 +1,38 @@
+﻿using System;
+using UnityEngine;
+
+namespace Bag
+{
+    public class FollowPointWithOvershoot : MonoBehaviour
+    {
+        [SerializeField] private Transform target;
+        [SerializeField] private float acceleration = 1f;
+        [SerializeField] private float smoothDamp = 1f;
+        
+        private Vector3 _velocity;
+
+        private void Update()
+        {
+            Accelerate();
+            transform.position += _velocity * Time.deltaTime;
+            transform.position = Vector3.SmoothDamp(transform.position, target.position, ref _velocity, smoothDamp);
+        }
+
+
+        private void Accelerate()
+        {
+            var cachedTransform = transform;
+            var direction = target.position - cachedTransform.position;
+            _velocity += direction * acceleration * Time.deltaTime;
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(target.position, 0.1f);
+            
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position, 0.1f);
+        }
+    }
+}
