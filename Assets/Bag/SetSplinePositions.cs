@@ -1,26 +1,52 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D;
 
-public class SetSplinePositions : MonoBehaviour
+namespace Bag
 {
-    [SerializeField] private SpriteShapeController spriteShapeController;
-    [SerializeField] private Transform[] points;
-    
-    private void Update()
+    public class SetSplinePositions : MonoBehaviour
     {
-        for (int i = 0; i < points.Length; i++)
+        private const float SplineOffset = 0.5f;
+
+        [SerializeField] private SpriteShapeController spriteShapeController;
+        [SerializeField] private Transform[] points;
+
+        private void Update()
         {
-            var point = points[i].localPosition;
-            spriteShapeController.spline.SetPosition(i, point);
-            
-            var towardsCenter = (Vector3.zero - point).normalized;
-            var rightTangent = Vector2.Perpendicular(towardsCenter);
-            var leftTangent = -rightTangent;
-            
-            spriteShapeController.spline.SetRightTangent(i, rightTangent * spriteShapeController.spline.GetRightTangent(i));
-            spriteShapeController.spline.SetLeftTangent(i, leftTangent * spriteShapeController.spline.GetLeftTangent(i));
+            for (int i = 0; i < points.Length; i++)
+            {
+                var point = points[i].localPosition;
+
+                try
+                {
+                    spriteShapeController.spline.SetPosition(i, point);
+                }
+                catch (ArgumentException e)
+                {
+                    // Exception caused by spline positions being too close together, offset a bit
+                    spriteShapeController.spline.SetPosition(i, point * SplineOffset);
+                }
+
+                // Get center of points
+                var center = Vector3.zero;
+                foreach (var t in points)
+                {
+                    center += t.localPosition;
+                }
+
+                center /= points.Length;
+
+                var towardsCenter = (center - point).normalized;
+
+                var leftTangent = spriteShapeController.spline.GetLeftTangent(i);
+                var newRightTangent = Vector2.Perpendicular(towardsCenter) * leftTangent.magnitude;
+                var newLeftTangent = -newRightTangent;
+
+                spriteShapeController.spline.SetLeftTangent(i, newLeftTangent);
+                spriteShapeController.spline.SetRightTangent(i, newRightTangent);
+            }
         }
     }
 }
