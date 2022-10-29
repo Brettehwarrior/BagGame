@@ -13,8 +13,14 @@ namespace Bag
 
         [SerializeField] private SpriteShapeController spriteShapeController;
         [SerializeField] private Transform[] points;
-
+        public Transform[] Points => points;
+        
         private void Update()
+        {
+            UpdateSpline();
+        }
+
+        public void UpdateSpline()
         {
             // Get center of points
             var center = Vector3.zero;

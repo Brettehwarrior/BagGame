@@ -13,6 +13,8 @@ namespace Bag
         [SerializeField] private float centerSpeedScaleCurveMaxDistance = 1f;
         
         private Vector3 _velocity;
+        
+        public Transform Target => target;
 
         private void Update()
         {
