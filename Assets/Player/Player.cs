@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Items;
 using UnityEngine;
 
 namespace Player
@@ -11,6 +12,7 @@ namespace Player
     {
         private PlayerInputHandler _inputHandler;
         private PlayerMovement _playerMovement;
+        private ItemGrabber _itemGrabber;
         
         [SerializeField] private float walkAcceleration;
         [SerializeField] private float maxWalkSpeed;
@@ -19,6 +21,17 @@ namespace Player
         {
             _inputHandler = GetComponent<PlayerInputHandler>();
             _playerMovement = GetComponent<PlayerMovement>();
+            _itemGrabber = GetComponent<ItemGrabber>();
+        }
+
+        private void Start()
+        {
+            SubscribeInputActions();
+        }
+
+        private void SubscribeInputActions()
+        {
+            _inputHandler.OnPickUpItemInput.AddListener(_itemGrabber.TryPickUpItem);
         }
 
         private void Update()
@@ -29,8 +42,11 @@ namespace Player
         private void DoMovement()
         {
             _playerMovement.AccelerateHorizontal(_inputHandler.MovementInput.x, walkAcceleration, maxWalkSpeed);
-            // _playerMovement.SetHorizontalVelocity(_playerMovement.CurrentVelocity.x +
-            //                                       (_inputHandler.MovementInput.x * walkAcceleration * Time.deltaTime));
+        }
+        
+        private void TryPickUpItem()
+        {
+            _itemGrabber.TryPickUpItem();
         }
     }
 }

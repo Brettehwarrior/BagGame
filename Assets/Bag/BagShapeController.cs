@@ -9,8 +9,10 @@ namespace Bag
     [ExecuteInEditMode]
     public class BagShapeController : MonoBehaviour
     {
+        private const float MaxScale = 5f;
+        
         [SerializeField] private Transform targetPointParent;
-        [SerializeField] [Range(1f, 5f)] private float scale = 1f;
+        [SerializeField] [Range(1f, MaxScale)] private float scale = 1f;
         [SerializeField] [Range(-1f, 1f)] private float xOffset = 0f;
         [SerializeField] private float xOffsetScale = 1f;
         [SerializeField] private SetSplinePositions splinePositionSetter;
@@ -24,6 +26,7 @@ namespace Bag
         private void ScaleTargetPoints()
         {
             targetPointParent.localScale = Vector3.one * scale;
+            splinePositionSetter.TangentScale = scale / MaxScale;
         }
         
         private void OffsetTargetPoints()

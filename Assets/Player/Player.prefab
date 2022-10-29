@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 827459162827181270}
   - component: {fileID: 6405556428997457687}
   - component: {fileID: 3773477342553322722}
+  - component: {fileID: 7149285536503528281}
   - component: {fileID: 2044396555001136328}
   - component: {fileID: 8080612895430218870}
   - component: {fileID: 6254691805779837168}
@@ -35,7 +36,8 @@ Transform:
   m_LocalPosition: {x: -0.11610476, y: 0.15050009, z: -0.08982583}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4594419048293117284}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -132,10 +134,29 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &7149285536503528281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 948605347449981316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a7555f77acc56c4ca3bb88b998fda58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  bounds:
+    m_Center: {x: 0, y: 0.1, z: 0}
+    m_Extent: {x: 1.27, y: 0.92, z: 0}
+  heldItemPosition: {fileID: 4594419048293117284}
 --- !u!114 &2044396555001136328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,6 +186,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: fec275d0-d4d6-4da2-a1e0-a6c289d61b0d
     m_ActionName: Basic Movement/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a27b3a0d-c2fd-4b5d-b3be-65c405a4fba2
+    m_ActionName: Basic Movement/Pick Up Item[/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Basic Movement
@@ -208,3 +233,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 428fff041ccb71748848ada1c34ae083, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &5432279068740299644
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4594419048293117284}
+  m_Layer: 0
+  m_Name: Held Item Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4594419048293117284
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5432279068740299644}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.04, y: 0.16, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 577219299424229898}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
