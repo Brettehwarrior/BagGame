@@ -1,10 +1,8 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D;
 
-namespace Bag
+namespace Bag.Shape
 {
     [ExecuteInEditMode]
     public class SetSplinePositions : MonoBehaviour

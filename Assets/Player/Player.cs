@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Bag.Dimension;
 using Items;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ namespace Player
         private PlayerInputHandler _inputHandler;
         private PlayerMovement _playerMovement;
         private ItemGrabber _itemGrabber;
+        private IBaggable _baggable;
         
         [SerializeField] private float walkAcceleration;
         [SerializeField] private float maxWalkSpeed;
@@ -22,6 +24,7 @@ namespace Player
             _inputHandler = GetComponent<PlayerInputHandler>();
             _playerMovement = GetComponent<PlayerMovement>();
             _itemGrabber = GetComponent<ItemGrabber>();
+            _baggable = GetComponent<IBaggable>();
         }
 
         private void Start()
@@ -31,7 +34,9 @@ namespace Player
 
         private void SubscribeInputActions()
         {
-            _inputHandler.OnPickUpItemInput.AddListener(_itemGrabber.TryPickUpItem);
+            // TODO: This gets fired once on play (because left click starts game maybe?)
+            _inputHandler.OnPickUpItemInput.AddListener(TryPickUpItem);
+            _inputHandler.OnEnterExitBagInput.AddListener(EnterExitBag);
         }
 
         private void Update()
@@ -46,7 +51,19 @@ namespace Player
         
         private void TryPickUpItem()
         {
-            _itemGrabber.TryPickUpItem();
+            _itemGrabber.TryPickUpDropItem();
+        }
+
+        private void EnterExitBag()
+        {
+            if (_baggable.IsInBag())
+            {
+                _baggable.ExitBag();
+            }
+            else
+            {
+                _baggable.EnterBag();
+            }
         }
     }
 }

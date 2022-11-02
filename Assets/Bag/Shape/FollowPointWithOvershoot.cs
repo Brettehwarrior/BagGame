@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Bag
+namespace Bag.Shape
 {
     public class FollowPointWithOvershoot : MonoBehaviour
     {
@@ -18,6 +17,9 @@ namespace Bag
 
         private void Update()
         {
+            if (target == null)
+                return;
+            
             Accelerate();
             transform.position += _velocity * Time.deltaTime;
             transform.position = Vector3.SmoothDamp(transform.position, target.position, ref _velocity, smoothDamp);
@@ -40,8 +42,11 @@ namespace Bag
 
         private void OnDrawGizmos()
         {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(target.position, 0.1f);
+            if (target != null)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawWireSphere(target.position, 0.1f);
+            }
             
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(transform.position, 0.1f);

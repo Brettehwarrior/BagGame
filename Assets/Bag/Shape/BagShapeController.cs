@@ -1,10 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Bag
+namespace Bag.Shape
 {
     [ExecuteInEditMode]
     public class BagShapeController : MonoBehaviour
@@ -19,6 +15,9 @@ namespace Bag
 
         private void Update()
         {
+            if (targetPointParent == null)
+                return;
+            
             ScaleTargetPoints();
             OffsetTargetPoints();
         }

@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Bag
+namespace Bag.Shape
 {
     public class StretchToPoint : MonoBehaviour
     {

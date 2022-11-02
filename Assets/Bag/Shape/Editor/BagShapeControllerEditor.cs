@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace Bag.Editor
+namespace Bag.Shape.Editor
 {
     [CustomEditor(typeof(BagShapeController))]
     public class BagShapeControllerEditor : UnityEditor.Editor

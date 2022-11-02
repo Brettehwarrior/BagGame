@@ -11,7 +11,7 @@ namespace Items
         [SerializeField] private Bounds bounds;
         [SerializeField] private Transform heldItemPosition;
 
-        private Transform _heldItem;
+        private IItem _heldItem;
 
         private void Update()
         {
@@ -22,29 +22,39 @@ namespace Items
         {
             if (_heldItem == null)
                 return;
-            
-            _heldItem.position = heldItemPosition.position;
-            heldItemPosition.rotation = _heldItem.rotation;
+
+            var heldItemTransform = ((MonoBehaviour) _heldItem).transform;
+            heldItemTransform.position = heldItemPosition.position;
+            heldItemPosition.rotation = heldItemTransform.rotation;
         }
 
-        public void TryPickUpItem()
+        public void TryPickUpDropItem()
         {
+            if (_heldItem != null)
+                DropItem();
+            else
+                PickUpItem();
+        }
+
+        private void PickUpItem()
+        {
+            // TODO: Prioritize nearest item
             // Use the bounds to check if there is an item in the area
             var itemCollider = Physics2D.OverlapBox(bounds.center + transform.position, bounds.size, 0f, itemLayer);
             if (itemCollider == null)
                 return;
-            Debug.Log(itemCollider);
             
-            // Check if the collider is an item
-            var item = itemCollider.GetComponent<IItem>();
-            if (item == null)
-                return;
-            
-            item.Pickup();
-            
-            // Get transform of the item
-            _heldItem = ((MonoBehaviour) item).transform;
+            // Pick up item if has IItem behaviour
+            _heldItem = itemCollider.GetComponent<IItem>();
+            _heldItem?.Pickup();
         }
+
+        private void DropItem()
+        {
+            _heldItem.Drop();
+            _heldItem = null;
+        }
+        
 
         private void OnDrawGizmosSelected()
         {

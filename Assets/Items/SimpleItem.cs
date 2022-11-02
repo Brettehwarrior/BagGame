@@ -13,11 +13,13 @@ namespace Items
 
         public void Pickup()
         {
+            _rigidbody.velocity = Vector2.zero;
             _rigidbody.isKinematic = true;
         }
 
         public void Drop()
         {
+            _rigidbody.velocity = Vector2.zero;
             _rigidbody.isKinematic = false;
         }
 
