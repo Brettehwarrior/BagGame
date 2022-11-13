@@ -23,9 +23,19 @@ namespace Items
 
         private void PickUpItem()
         {
-            // TODO: Prioritize nearest item
-            // Use the bounds to check if there is an item in the area
-            var itemCollider = Physics2D.OverlapBox(bounds.center + transform.position, bounds.size, 0f, itemLayer);
+            // Use the bounds to check if there is an item in the area and get nearest
+            var colliders = Physics2D.OverlapBoxAll(bounds.center + transform.position, bounds.size, 0f, itemLayer);
+            Collider2D itemCollider = null;
+            var minDistance = float.MaxValue;
+            foreach (var col in colliders)
+            {
+                if (itemCollider == null || Vector2.Distance(transform.position, col.transform.position) < minDistance)
+                {
+                    itemCollider = col;
+                    minDistance = Vector2.Distance(transform.position, col.transform.position);
+                }
+            }
+            
             if (itemCollider == null)
                 return;
             
