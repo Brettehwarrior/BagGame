@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 namespace Bag.Dimension
@@ -10,11 +11,11 @@ namespace Bag.Dimension
 
         [SerializeField] private GameObject cam;
         [SerializeField] private Transform entryPoint;
-        [SerializeField] private Transform dimension;
+        [SerializeField] private Transform storedObjectsParent;
         
         public GameObject Cam => cam;
         public Transform EntryPoint => entryPoint;
-
+        
         private struct StoredObject
         {
             public Transform transform;
@@ -22,8 +23,10 @@ namespace Bag.Dimension
             public string previousScene;
         }
         
-        private readonly List<StoredObject> _storedObjects = new(); // gross
-        
+        private readonly List<StoredObject> _storedObjects = new();
+        private int _storedObjectsCount;
+        public UnityEvent<int> OnStoredObjectsCountChanged { get; private set; }
+
         private void Awake()
         {
             if (Instance == null)
@@ -34,6 +37,14 @@ namespace Bag.Dimension
             {
                 Destroy(gameObject);
             }
+            
+            OnStoredObjectsCountChanged = new UnityEvent<int>();
+        }
+
+        private void CountStoredObjects()
+        {
+            _storedObjectsCount = storedObjectsParent.childCount;
+            OnStoredObjectsCountChanged.Invoke(_storedObjectsCount);
         }
     
         /// <summary>
@@ -49,7 +60,8 @@ namespace Bag.Dimension
                 previousScene = objectTransform.gameObject.scene.name
             });
 
-            objectTransform.parent = dimension;
+            objectTransform.parent = storedObjectsParent;
+            CountStoredObjects();
         }
         
         /// <summary>
@@ -71,6 +83,7 @@ namespace Bag.Dimension
                 storedObject.transform.SetParent(storedObject.previousParent);
             }
             _storedObjects.Remove(storedObject);
+            CountStoredObjects();
         }
     }
 }
