@@ -13,21 +13,6 @@ namespace Items
 
         private IItem _heldItem;
 
-        private void Update()
-        {
-            CarryItem();
-        }
-
-        private void CarryItem()
-        {
-            if (_heldItem == null)
-                return;
-
-            var heldItemTransform = ((MonoBehaviour) _heldItem).transform;
-            heldItemTransform.position = heldItemPosition.position;
-            heldItemPosition.rotation = heldItemTransform.rotation;
-        }
-
         public void TryPickUpDropItem()
         {
             if (_heldItem != null)
@@ -47,11 +32,17 @@ namespace Items
             // Pick up item if has IItem behaviour
             _heldItem = itemCollider.GetComponent<IItem>();
             _heldItem?.Pickup();
+            
+            // Set the item's parent to this object
+            var itemTransform = itemCollider.transform;
+            itemTransform.SetParent(heldItemPosition);
+            itemTransform.localPosition = Vector3.zero;
         }
 
         private void DropItem()
         {
             _heldItem.Drop();
+            ((MonoBehaviour) _heldItem).transform.SetParent(transform.parent);
             _heldItem = null;
         }
         

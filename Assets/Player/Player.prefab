@@ -704,6 +704,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7568286697682042751, guid: ca1d0f811a58a3241bcd9f2b3da8d6ec, type: 3}
+      propertyPath: targetPointParent
+      value: 
+      objectReference: {fileID: 7030794662705568862}
     - target: {fileID: 7568286697733409635, guid: ca1d0f811a58a3241bcd9f2b3da8d6ec, type: 3}
       propertyPath: m_Spline.m_ControlPoints.Array.data[0].position.x
       value: -0.05564189
@@ -798,7 +802,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7568286697733409636, guid: ca1d0f811a58a3241bcd9f2b3da8d6ec, type: 3}
       propertyPath: m_DynamicOccludee
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7568286697733409636, guid: ca1d0f811a58a3241bcd9f2b3da8d6ec, type: 3}
       propertyPath: m_LocalAABB.m_Center.x
