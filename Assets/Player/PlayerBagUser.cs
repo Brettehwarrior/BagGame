@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Bag;
 using Bag.Dimension;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerBagUser : MonoBehaviour
 {

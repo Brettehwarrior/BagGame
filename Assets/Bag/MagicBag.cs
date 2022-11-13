@@ -22,6 +22,7 @@ namespace Bag
             
             var dimensionEntryPoint = BagDimensionManager.Instance.EntryPoint.position;
             objectTransform.position = new Vector3(dimensionEntryPoint.x, dimensionEntryPoint.y, objectTransform.position.z);
+            BagDimensionManager.Instance.StoreObject(objectTransform);
         }
 
         public void ExitBag(Transform objectTransform)
@@ -30,6 +31,7 @@ namespace Bag
                 return;
             
             objectTransform.position = new Vector3(transform.position.x, transform.position.y, objectTransform.position.z);
+            BagDimensionManager.Instance.ReleaseObject(objectTransform);
         }
     }
 }

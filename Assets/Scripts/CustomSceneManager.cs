@@ -1,4 +1,5 @@
-﻿using UnityEngine.SceneManagement;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public static class CustomSceneManager
 {
@@ -25,5 +26,11 @@ public static class CustomSceneManager
             return;
         
         SceneManager.LoadScene(sceneName, mode);
+    }
+    
+    public static void MoveObjectToScene(GameObject obj, string sceneName)
+    {
+        if (IsSceneLoaded(sceneName))
+            SceneManager.MoveGameObjectToScene(obj, SceneManager.GetSceneByName(sceneName));
     }
 }
