@@ -45,7 +45,7 @@ namespace Player
             var desiredAcceleration = horizontalInput * acceleration * Time.deltaTime;
 
             if (Mathf.Abs(CurrentVelocity.x + desiredAcceleration) > maxSpeed)
-                desiredAcceleration -= Mathf.Min(desiredAcceleration, CurrentVelocity.x + desiredAcceleration - maxSpeed);
+                desiredAcceleration -= Mathf.Min(Mathf.Abs(desiredAcceleration), Mathf.Abs(CurrentVelocity.x + desiredAcceleration) - maxSpeed) * Mathf.Sign(CurrentVelocity.x);
             
             var newHorizontalVelocity = CurrentVelocity.x + desiredAcceleration;
             SetHorizontalVelocity(newHorizontalVelocity);

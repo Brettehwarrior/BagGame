@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Bag.Dimension;
+using Items;
 using UnityEngine;
 
 namespace Player
@@ -11,6 +13,8 @@ namespace Player
     {
         private PlayerInputHandler _inputHandler;
         private PlayerMovement _playerMovement;
+        private ItemGrabber _itemGrabber;
+        private PlayerBagUser _bagUser;
         
         [SerializeField] private float walkAcceleration;
         [SerializeField] private float maxWalkSpeed;
@@ -19,6 +23,20 @@ namespace Player
         {
             _inputHandler = GetComponent<PlayerInputHandler>();
             _playerMovement = GetComponent<PlayerMovement>();
+            _itemGrabber = GetComponent<ItemGrabber>();
+            _bagUser = GetComponent<PlayerBagUser>();
+        }
+
+        private void Start()
+        {
+            SubscribeInputActions();
+        }
+
+        private void SubscribeInputActions()
+        {
+            // TODO: This gets fired once on play (because left click starts game maybe?)
+            _inputHandler.OnPickUpItemInput.AddListener(TryPickUpItem);
+            _inputHandler.OnEnterExitBagInput.AddListener(EnterExitBag);
         }
 
         private void Update()
@@ -29,8 +47,23 @@ namespace Player
         private void DoMovement()
         {
             _playerMovement.AccelerateHorizontal(_inputHandler.MovementInput.x, walkAcceleration, maxWalkSpeed);
-            // _playerMovement.SetHorizontalVelocity(_playerMovement.CurrentVelocity.x +
-            //                                       (_inputHandler.MovementInput.x * walkAcceleration * Time.deltaTime));
+        }
+        
+        private void TryPickUpItem()
+        {
+            _itemGrabber.TryPickUpDropItem();
+        }
+
+        private void EnterExitBag()
+        {
+            if (_bagUser.InBag)
+            {
+                _bagUser.ExitBag();
+            }
+            else
+            {
+                _bagUser.EnterBag();
+            }
         }
     }
 }
