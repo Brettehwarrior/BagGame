@@ -12,6 +12,7 @@ namespace Bag.Shape
         [SerializeField] private float centerSpeedScaleCurveMaxDistance = 1f;
         
         private Vector3 _velocity;
+        private Vector3 _previousPosition;
         
         public Transform Target => target;
 
@@ -19,10 +20,16 @@ namespace Bag.Shape
         {
             if (target == null)
                 return;
+
+            var cachedTransform = transform;
+            
+            cachedTransform.position = _previousPosition;
             
             Accelerate();
-            transform.position += _velocity * Time.deltaTime;
-            transform.position = Vector3.SmoothDamp(transform.position, target.position, ref _velocity, smoothDamp);
+            cachedTransform.position += _velocity * Time.deltaTime;
+            cachedTransform.position = Vector3.SmoothDamp(transform.position, target.position, ref _velocity, smoothDamp);
+            
+            _previousPosition = cachedTransform.position;
         }
 
 
@@ -30,7 +37,7 @@ namespace Bag.Shape
         {   
             var cachedTransform = transform;
             var direction = target.position - cachedTransform.position;
-            _velocity += direction * acceleration * Time.deltaTime;
+            _velocity += acceleration * Time.deltaTime * direction;
             
             // Distance from center force
             if (center == null)

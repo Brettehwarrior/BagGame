@@ -20,12 +20,12 @@
             }
           },
           {
-            "id": "af4bf059b1e03531",
+            "id": "19801f35229adb75",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Devlogs/First devlog notes.md",
+                "file": "The Player Object.md",
                 "mode": "source",
                 "source": false
               }
@@ -153,7 +153,8 @@
   },
   "active": "14e495cd5e90de9a",
   "lastOpenFiles": [
-    "Devlogs/First devlog notes.md",
-    "Sneaky Game (feat. Bag).md"
+    "The Player Object.md",
+    "Sneaky Game (feat. Bag).md",
+    "Devlogs/First devlog notes.md"
   ]
 }

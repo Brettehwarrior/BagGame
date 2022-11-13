@@ -1,3 +1,5 @@
+Funny because there actually is a first devlog and it's not anything like this :)
+
 - Hi, I’m Trent
 - I am going to make a game before December 16th
 - I've started to notice one very essential aspect of creating games that seems to be missing across the board in devlog series and other gamedev content is the process of design

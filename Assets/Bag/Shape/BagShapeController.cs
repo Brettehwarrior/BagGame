@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bag.Shape
@@ -11,7 +12,7 @@ namespace Bag.Shape
         [SerializeField] [Range(1f, MaxScale)] private float scale = 1f;
         [SerializeField] [Range(-1f, 1f)] private float xOffset = 0f;
         [SerializeField] private float xOffsetScale = 1f;
-        [SerializeField] private SetSplinePositions splinePositionSetter;
+        [SerializeField] private SplinePositionSetter splinePositionSetter;
 
         private void Update()
         {
@@ -43,6 +44,12 @@ namespace Bag.Shape
             }
             
             splinePositionSetter.UpdateSpline();
+        }
+
+        public void SetTargets(Transform parent)
+        {
+            targetPointParent = parent;
+            splinePositionSetter.Points = parent.GetComponentsInChildren<Transform>();
         }
     }
 }

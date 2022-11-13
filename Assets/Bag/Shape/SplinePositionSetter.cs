@@ -5,7 +5,7 @@ using UnityEngine.U2D;
 namespace Bag.Shape
 {
     [ExecuteInEditMode]
-    public class SetSplinePositions : MonoBehaviour
+    public class SplinePositionSetter : MonoBehaviour
     {
         private const float SplineOffset = 0.5f;
 
@@ -18,7 +18,12 @@ namespace Bag.Shape
             get => tangentScale;
             set => tangentScale = value;
         }
-        public Transform[] Points => points;
+        
+        public Transform[] Points
+        {
+            get => points;
+            set => points = value;
+        }
         
         private void Update()
         {

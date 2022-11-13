@@ -14,7 +14,7 @@ namespace Player
         private PlayerInputHandler _inputHandler;
         private PlayerMovement _playerMovement;
         private ItemGrabber _itemGrabber;
-        private IBaggable _baggable;
+        private PlayerBagUser _bagUser;
         
         [SerializeField] private float walkAcceleration;
         [SerializeField] private float maxWalkSpeed;
@@ -24,7 +24,7 @@ namespace Player
             _inputHandler = GetComponent<PlayerInputHandler>();
             _playerMovement = GetComponent<PlayerMovement>();
             _itemGrabber = GetComponent<ItemGrabber>();
-            _baggable = GetComponent<IBaggable>();
+            _bagUser = GetComponent<PlayerBagUser>();
         }
 
         private void Start()
@@ -56,13 +56,13 @@ namespace Player
 
         private void EnterExitBag()
         {
-            if (_baggable.IsInBag())
+            if (_bagUser.InBag)
             {
-                _baggable.ExitBag();
+                _bagUser.ExitBag();
             }
             else
             {
-                _baggable.EnterBag();
+                _bagUser.EnterBag();
             }
         }
     }
