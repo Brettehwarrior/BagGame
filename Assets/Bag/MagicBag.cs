@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Bag.Dimension;
+using Bag.Shape;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,10 +10,19 @@ namespace Bag
 {
     public class MagicBag : MonoBehaviour
     {
-        private void Start()
+        private BagShapeController _bagShapeController;
+
+        private void Awake()
         {
+            _bagShapeController = GetComponent<BagShapeController>();
+            
             // Initialize Bag Dimension Scene
             CustomSceneManager.LoadScene(CustomSceneManager.Scenes.BagDimension);
+        }
+
+        private void Start()
+        {
+            BagDimensionManager.Instance.OnStoredObjectsCountChanged.AddListener(UpdateBagShape);
         }
 
         public void EnterBag(Transform objectTransform)
@@ -32,6 +42,12 @@ namespace Bag
             
             objectTransform.position = new Vector3(transform.position.x, transform.position.y, objectTransform.position.z);
             BagDimensionManager.Instance.ReleaseObject(objectTransform);
+        }
+        
+        private void UpdateBagShape(int itemCount)
+        {
+            Debug.Log("Item count: " + itemCount);
+            _bagShapeController.UpdateBagShapeByItemCount(itemCount);
         }
     }
 }

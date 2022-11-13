@@ -6,13 +6,19 @@ namespace Bag.Shape
     [ExecuteInEditMode]
     public class BagShapeController : MonoBehaviour
     {
-        private const float MaxScale = 5f;
-        
+        [SerializeField] private SplinePositionSetter splinePositionSetter;
         [SerializeField] private Transform targetPointParent;
-        [SerializeField] [Range(1f, MaxScale)] private float scale = 1f;
+        
+        [Header("Shape Properties")]
+        [SerializeField] private float minScale = 1f;
+        [SerializeField] private float maxScale = 5f;
+        [SerializeField] [Range(0f, 1f)] private float scalePercentage = 1f;
         [SerializeField] [Range(-1f, 1f)] private float xOffset = 0f;
         [SerializeField] private float xOffsetScale = 1f;
-        [SerializeField] private SplinePositionSetter splinePositionSetter;
+        
+        [Header("Scale Control")]
+        [SerializeField] private AnimationCurve scaleCurve;
+        [SerializeField] private int itemsToMaxScale = 10;
 
         private void Update()
         {
@@ -25,8 +31,9 @@ namespace Bag.Shape
 
         private void ScaleTargetPoints()
         {
+            var scale = minScale + (maxScale-minScale) * scalePercentage;
             targetPointParent.localScale = Vector3.one * scale;
-            splinePositionSetter.TangentScale = scale / MaxScale;
+            splinePositionSetter.TangentScale = scale / maxScale;
         }
         
         private void OffsetTargetPoints()
@@ -50,6 +57,11 @@ namespace Bag.Shape
         {
             targetPointParent = parent;
             splinePositionSetter.Points = parent.GetComponentsInChildren<Transform>();
+        }
+        
+        public void UpdateBagShapeByItemCount(int itemCount)
+        {
+            scalePercentage = scaleCurve.Evaluate((float)itemCount / itemsToMaxScale);
         }
     }
 }
