@@ -9,11 +9,9 @@ namespace Bag.Dimension
     {
         public static BagDimensionManager Instance { get; private set; }
 
-        [SerializeField] private GameObject cam;
         [SerializeField] private Transform entryPoint;
         [SerializeField] private Transform storedObjectsParent;
         
-        public GameObject Cam => cam;
         public Transform EntryPoint => entryPoint;
         
         private struct StoredObject

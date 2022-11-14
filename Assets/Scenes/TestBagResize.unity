@@ -232,7 +232,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7568286698993178009, guid: ea2b3c16148777e42b63347ca3c2d346, type: 3}
       propertyPath: m_DynamicOccludee
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7568286698993178009, guid: ea2b3c16148777e42b63347ca3c2d346, type: 3}
       propertyPath: m_LocalAABB.m_Center.x
@@ -1003,7 +1003,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215688, g: 0.4745098, b: 0.28569528, a: 0}
+  m_BackGroundColor: {r: 0.19215688, g: 0.4745098, b: 0.28569528, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

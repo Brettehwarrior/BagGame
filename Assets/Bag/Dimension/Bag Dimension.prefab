@@ -80,7 +80,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4013553497678350794
 Transform:
   m_ObjectHideFlags: 0
@@ -106,7 +106,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.2264151, g: 0.16981132, b: 0.19166188, a: 0}
+  m_BackGroundColor: {r: 0.2264151, g: 0.16981132, b: 0.19166188, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -129,7 +129,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: 8da30a1a0790ddb4fb105c474102ef9e, type: 2}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -146,7 +146,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4013553497678350791}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!114 &4013553497678350795
 MonoBehaviour:
   m_ObjectHideFlags: 0

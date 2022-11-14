@@ -12,16 +12,7 @@ public class PlayerBagUser : MonoBehaviour
     [SerializeField] private Transform bagTransform;
     [SerializeField] private Transform bagParent;
 
-    private GameObject _previousCamera;
-    
     public bool InBag { get; private set; }
-
-    private void Start()
-    {
-        // TODO: Make this the previous camera rather than main
-        _previousCamera = Camera.main.gameObject;
-    }
-
     public void EnterBag()
     {
         // Detach bag
@@ -29,20 +20,12 @@ public class PlayerBagUser : MonoBehaviour
         
         InBag = true;
         bag.EnterBag(transform);
-        
-        // Camera
-        _previousCamera.SetActive(false);
-        BagDimensionManager.Instance.Cam.SetActive(true);
     }
     
     public void ExitBag()
     {
         InBag = false;
         bag.ExitBag(transform);
-        
-        // Camera
-        _previousCamera.SetActive(true);
-        BagDimensionManager.Instance.Cam.SetActive(false);
         
         // Attach bag
         bagParent.SetParent(transform, true);
