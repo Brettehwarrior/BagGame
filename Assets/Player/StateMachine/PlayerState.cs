@@ -4,18 +4,21 @@ namespace Player.StateMachine
 {
     public abstract class PlayerState
     {
-        private PlayerStateMachine _stateMachine;
-        private List<PlayerStateTransition> _transitions = new List<PlayerStateTransition>();
+        private readonly PlayerStateMachine _stateMachine;
+        private readonly List<PlayerStateTransition> _transitions = new List<PlayerStateTransition>();
         
-        public PlayerState(PlayerStateMachine stateMachine)
+        protected readonly Player player;
+        
+        public PlayerState(PlayerStateMachine stateMachine, Player player)
         {
             _stateMachine = stateMachine;
+            this.player = player;
         }
         
-        public abstract void EnterState();
-        public abstract void Update();
-        public abstract void FixedUpdate();
-        public abstract void ExitState();
+        public virtual void EnterState() {}
+        public virtual void Update() {}
+        public virtual void FixedUpdate() {}
+        public virtual void ExitState() {}
         
         public void AddTransition(PlayerStateTransition transition)
         {

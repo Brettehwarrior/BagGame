@@ -15,10 +15,14 @@ namespace Player
         private PlayerMovement _playerMovement;
         private ItemGrabber _itemGrabber;
         private PlayerBagUser _bagUser;
-        
+     
+        // Properties
         [SerializeField] private float walkAcceleration;
         [SerializeField] private float maxWalkSpeed;
 
+        // Status
+        public Vector2 CurrentVelocity => _playerMovement.CurrentVelocity;
+        
         private void Awake()
         {
             _inputHandler = GetComponent<PlayerInputHandler>();
