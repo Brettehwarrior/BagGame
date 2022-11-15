@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraBoundedFollow : MonoBehaviour
+public class BoundedFollow : MonoBehaviour
 {
     [SerializeField] private Transform target;
     [SerializeField] private float smoothSpeed = 0.125f;
     [SerializeField] private Vector2 minBounds;
     [SerializeField] private Vector2 maxBounds;
+    
+    public Transform Target { get => target; set => target = value; }
     
     private void LateUpdate()
     {

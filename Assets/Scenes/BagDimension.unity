@@ -191,6 +191,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1902759431}
     - target: {fileID: 6557543970479848509, guid: a62aec55a40de304f9ddd76540fbae94, type: 3}
+      propertyPath: boundedFollow
+      value: 
+      objectReference: {fileID: 1902759433}
+    - target: {fileID: 6557543970479848509, guid: a62aec55a40de304f9ddd76540fbae94, type: 3}
       propertyPath: storedObjectsParent
       value: 
       objectReference: {fileID: 1902759432}
@@ -277,3 +281,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2095219624673004328, guid: d08bfda17c19d8745bc639fadc76d51f, type: 3}
   m_PrefabInstance: {fileID: 1902759428}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1902759433 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3419411718529840777, guid: d08bfda17c19d8745bc639fadc76d51f, type: 3}
+  m_PrefabInstance: {fileID: 1902759428}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1902759430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 572a16b4aa122fc4480dc737e2ad8e50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

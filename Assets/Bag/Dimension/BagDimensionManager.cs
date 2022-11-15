@@ -9,11 +9,10 @@ namespace Bag.Dimension
     {
         public static BagDimensionManager Instance { get; private set; }
 
-        [SerializeField] private GameObject cam;
         [SerializeField] private Transform entryPoint;
         [SerializeField] private Transform storedObjectsParent;
+        [SerializeField] private BoundedFollow boundedFollow;
         
-        public GameObject Cam => cam;
         public Transform EntryPoint => entryPoint;
         
         private struct StoredObject
@@ -84,6 +83,21 @@ namespace Bag.Dimension
             }
             _storedObjects.Remove(storedObject);
             CountStoredObjects();
+        }
+
+        public void SetCameraFollowTarget(Transform target)
+        {
+            boundedFollow.Target = target;
+        }
+        
+        public void EnableCameraFollow()
+        {
+            boundedFollow.enabled = true;
+        }
+        
+        public void DisableCameraFollow()
+        {
+            boundedFollow.enabled = false;
         }
     }
 }
