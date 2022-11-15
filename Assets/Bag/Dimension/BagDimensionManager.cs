@@ -11,6 +11,7 @@ namespace Bag.Dimension
 
         [SerializeField] private Transform entryPoint;
         [SerializeField] private Transform storedObjectsParent;
+        [SerializeField] private BoundedFollow boundedFollow;
         
         public Transform EntryPoint => entryPoint;
         
@@ -82,6 +83,21 @@ namespace Bag.Dimension
             }
             _storedObjects.Remove(storedObject);
             CountStoredObjects();
+        }
+
+        public void SetCameraFollowTarget(Transform target)
+        {
+            boundedFollow.Target = target;
+        }
+        
+        public void EnableCameraFollow()
+        {
+            boundedFollow.enabled = true;
+        }
+        
+        public void DisableCameraFollow()
+        {
+            boundedFollow.enabled = false;
         }
     }
 }

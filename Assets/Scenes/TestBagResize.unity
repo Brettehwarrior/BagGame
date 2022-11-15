@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 444101923698550377, guid: ea2b3c16148777e42b63347ca3c2d346, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 577219299424229898, guid: ea2b3c16148777e42b63347ca3c2d346, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -178,17 +182,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 7030794662705568862, guid: ea2b3c16148777e42b63347ca3c2d346, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.3199999
-      objectReference: {fileID: 0}
-    - target: {fileID: 7030794662705568862, guid: ea2b3c16148777e42b63347ca3c2d346, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.3199999
-      objectReference: {fileID: 0}
-    - target: {fileID: 7030794662705568862, guid: ea2b3c16148777e42b63347ca3c2d346, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.3199999
+    - target: {fileID: 6004659933680871806, guid: ea2b3c16148777e42b63347ca3c2d346, type: 3}
+      propertyPath: m_AspectRatio
+      value: NaN
       objectReference: {fileID: 0}
     - target: {fileID: 7568286697472694869, guid: ea2b3c16148777e42b63347ca3c2d346, type: 3}
       propertyPath: m_LocalPosition.x
@@ -353,7 +349,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.2949003, g: 0.31190285, b: 0.4433962, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -535,7 +531,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.2949003, g: 0.31190285, b: 0.4433962, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -770,7 +766,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.2949003, g: 0.31190285, b: 0.4433962, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1185,7 +1181,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.2949003, g: 0.31190285, b: 0.4433962, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
