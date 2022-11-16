@@ -2,6 +2,10 @@
 
 namespace Player.StateMachine
 {
+    /// <summary>
+    /// A state object used in a state machine
+    /// Defines state behaviour for various methods
+    /// </summary>
     public abstract class PlayerState
     {
         private readonly PlayerStateMachine _stateMachine;
@@ -18,6 +22,7 @@ namespace Player.StateMachine
         public virtual void EnterState() {}
         public virtual void Update() {}
         public virtual void FixedUpdate() {}
+        public virtual void LateUpdate() {}
         public virtual void ExitState() {}
         
         public void AddTransition(PlayerStateTransition transition)

@@ -2,6 +2,9 @@
 
 namespace Player.StateMachine
 {
+    /// <summary>
+    /// Transitions contain a target state, and a condition function to meet to switch to that state
+    /// </summary>
     public class PlayerStateTransition
     {
         private PlayerState _state;

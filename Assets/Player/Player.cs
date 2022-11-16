@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Bag.Dimension;
 using Items;
+using Player.StateMachine;
 using UnityEngine;
 
 namespace Player
@@ -15,6 +16,9 @@ namespace Player
         private PlayerMovement _playerMovement;
         private ItemGrabber _itemGrabber;
         private PlayerBagUser _bagUser;
+
+        private PlayerStateMachine _stateMachine;
+        private PlayerStates _states;
      
         // Properties
         [SerializeField] private float walkAcceleration;
@@ -22,6 +26,7 @@ namespace Player
 
         // Status
         public Vector2 CurrentVelocity => _playerMovement.CurrentVelocity;
+        public Vector2 MovementInput => _inputHandler.MovementInput;
         
         private void Awake()
         {
@@ -34,6 +39,14 @@ namespace Player
         private void Start()
         {
             SubscribeInputActions();
+            InitializeStateMachine();
+        }
+
+        private void InitializeStateMachine()
+        {
+            _stateMachine = new PlayerStateMachine(this);
+            _states = new PlayerStates(_stateMachine, this);
+            _stateMachine.ChangeState(_states.Idle);
         }
 
         private void SubscribeInputActions()
@@ -46,6 +59,17 @@ namespace Player
         private void Update()
         {
             DoMovement();
+            _stateMachine.Update();
+        }
+
+        private void FixedUpdate()
+        {
+            _stateMachine.FixedUpdate();
+        }
+
+        private void LateUpdate()
+        {
+            _stateMachine.LateUpdate();
         }
 
         private void DoMovement()
