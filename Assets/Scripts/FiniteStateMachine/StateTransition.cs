@@ -8,16 +8,13 @@ namespace FiniteStateMachine
     /// </summary>
     public class StateTransition
     {
-        private PlayerState _state;
-        private Func<bool> _condition;
-        
-        public PlayerState State => _state;
-        public Func<bool> Condition => _condition;
-        
-        public StateTransition(PlayerState state, Func<bool> condition)
+        public State State { get; }
+        public Func<bool> Condition { get; }
+
+        public StateTransition(State state, Func<bool> condition)
         {
-            _state = state;
-            _condition = condition;
+            State = state;
+            Condition = condition;
         }
     }
 }

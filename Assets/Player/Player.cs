@@ -18,7 +18,6 @@ namespace Player
         private PlayerBagUser _bagUser;
 
         private PlayerStateMachine _stateMachine;
-        private PlayerStates _states;
      
         // Properties
         [SerializeField] private float walkAcceleration;
@@ -44,8 +43,8 @@ namespace Player
 
         private void InitializeStateMachine()
         {
-            _states = new PlayerStates(this);
-            _stateMachine = new PlayerStateMachine(_states.StartState);
+            var states = new PlayerStates(this);
+            _stateMachine = new PlayerStateMachine(states.StartState);
         }
 
         private void SubscribeInputActions()

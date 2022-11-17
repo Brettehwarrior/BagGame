@@ -14,14 +14,18 @@ namespace FiniteStateMachine
             _transitions.Add(transition);
         }
 
-        public PlayerState TryTransitions()
+        /// <summary>
+        /// Attempt all transitions and return the first one that succeeds, or null if all fail
+        /// </summary>
+        /// <returns>New state, or null if no transition is occuring</returns>
+        public State TryTransitions()
         {
             foreach (var transition in _transitions)
             {
                 if (!transition.Condition())
                     continue;
                 
-                // Transition
+                // Transition succeeded, return the new state
                 return transition.State;
             }
 

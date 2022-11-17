@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Player.StateMachine
 {
     /// <summary>
-    /// Pre-made state objects to use in transitions
+    /// Pre-made state objects to use in transitions (is this a factory? idk)
     /// </summary>
     public class PlayerStates
     {
