@@ -3,7 +3,7 @@
     /// <summary>
     /// State Machine responsible for keeping track of the current state of the player and switching between states
     /// </summary>
-    public class StateMachine<T> where T : State
+    public abstract class StateMachine<T> where T : State
     {
         public StateMachine(T startingState)
         {
