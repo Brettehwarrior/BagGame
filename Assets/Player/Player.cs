@@ -44,9 +44,8 @@ namespace Player
 
         private void InitializeStateMachine()
         {
-            _stateMachine = new PlayerStateMachine(this);
-            _states = new PlayerStates(_stateMachine, this);
-            _stateMachine.ChangeState(_states.Idle);
+            _states = new PlayerStates(this);
+            _stateMachine = new PlayerStateMachine(_states.StartState);
         }
 
         private void SubscribeInputActions()

@@ -20,6 +20,18 @@
             }
           },
           {
+            "id": "6e8a00e96de07b19",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Sneaky Game (feat. Bag).md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
             "id": "19801f35229adb75",
             "type": "leaf",
             "state": {
@@ -31,7 +43,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -148,10 +161,7 @@
     "direction": "horizontal",
     "width": 300
   },
-  "ribbon": {
-    "mostRecentAction": ""
-  },
-  "active": "14e495cd5e90de9a",
+  "active": "6e8a00e96de07b19",
   "lastOpenFiles": [
     "The Player Object.md",
     "Sneaky Game (feat. Bag).md",

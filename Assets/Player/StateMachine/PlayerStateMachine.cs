@@ -1,30 +1,17 @@
-﻿namespace Player.StateMachine
+﻿using FiniteStateMachine;
+
+namespace Player.StateMachine
 {
     /// <summary>
     /// State Machine responsible for keeping track of the current state of the player and switching between states
     /// </summary>
-    public class PlayerStateMachine
+    public class PlayerStateMachine : StateMachine<PlayerState>
     {
-        private Player _player;
-        public PlayerState CurrentState { get; private set; }
-        
         // Constructor
-        public PlayerStateMachine(Player player)
+        public PlayerStateMachine(PlayerState startingState) : base(startingState)
         {
-            _player = player;
         }
 
-        /// <summary>
-        /// Change the current state of the player, invoking exit and enter methods
-        /// </summary>
-        /// <param name="state"></param>
-        public void ChangeState(PlayerState state)
-        {
-            CurrentState?.ExitState();
-            state?.EnterState();
-            CurrentState = state;
-        }
-        
         public void Update()
         {
             CurrentState?.Update();
@@ -38,7 +25,11 @@
         public void LateUpdate()
         {
             CurrentState?.LateUpdate();
-            CurrentState?.TryTransitions();
+            
+            // Check state transitions, and change state if one succeeds
+            var nextState = CurrentState?.TryTransitions();
+            if (nextState != null)
+                ChangeState(nextState);
         }
     }
 }
