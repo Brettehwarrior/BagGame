@@ -49,9 +49,9 @@ namespace Player
 
         private void SubscribeInputActions()
         {
-            // TODO: This gets fired once on play (because left click starts game maybe?)
-            _inputHandler.OnPickUpItemInput.AddListener(TryPickUpItem);
+            _inputHandler.OnPickUpItemInput.AddListener(TryPickUpItem); // TODO: This gets fired once on play (because left click starts game maybe?)
             _inputHandler.OnEnterExitBagInput.AddListener(EnterExitBag);
+            _inputHandler.OnJumpInput.AddListener(Jump);
         }
 
         private void Update()
@@ -90,6 +90,11 @@ namespace Player
             {
                 _bagUser.EnterBag();
             }
+        }
+
+        private void Jump()
+        {
+            
         }
     }
 }

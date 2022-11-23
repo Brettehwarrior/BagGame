@@ -1,4 +1,5 @@
 ﻿using FiniteStateMachine;
+using Player.StateMachine.States;
 using UnityEngine;
 
 namespace Player.StateMachine
@@ -11,33 +12,36 @@ namespace Player.StateMachine
         private readonly Player _player;
         
         // States
-        private readonly PlayerState _idle;
-        private readonly PlayerState _walk;
+        private readonly PlayerState _idleState;
+        private readonly PlayerState _walkState;
+        private readonly PlayerState _jumpState;
         
         // Entry state
-        public PlayerState StartState => _idle;
+        public PlayerState StartState => _idleState;
         
         public PlayerStates(Player player)
         {
             _player = player;
             
             // States
-            _idle = new PlayerIdleState(_player);
-            _walk = new PlayerWalkState(_player);
+            _idleState = new PlayerIdleState(_player);
+            _walkState = new PlayerWalkState(_player);
             
             CreateTransitions();
         }
         
         private void CreateTransitions()
         {
+            // var jumpTransition = new StateTransition();
+            
             // Idle
-            _idle.AddTransition(new StateTransition(_walk, 
+            _idleState.AddTransition(new StateTransition(_walkState, 
                 () => _player.CurrentVelocity.x != 0f
                         && Mathf.Abs(_player.MovementInput.x) > 0f
                 ));
             
             // Walk
-            _walk.AddTransition(new StateTransition(_idle, 
+            _walkState.AddTransition(new StateTransition(_idleState, 
                 () => _player.CurrentVelocity.x == 0f
                 ));
         }

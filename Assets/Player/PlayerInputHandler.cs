@@ -8,45 +8,41 @@ namespace Player
     [RequireComponent(typeof(PlayerInput))]
     public class PlayerInputHandler : MonoBehaviour
     {
+        [SerializeField] private InputActionReference moveActionReference;
+        [SerializeField] private InputActionReference pickUpActionReference;
+        [SerializeField] private InputActionReference enterExitBagActionReference;
+        [SerializeField] private InputActionReference jumpActionReference;
+        
         public Vector2 MovementInput { get; private set; }
         public UnityEvent OnPickUpItemInput { get; private set; }
         public UnityEvent OnEnterExitBagInput { get; private set; }
+        public UnityEvent OnJumpInput { get; private set; }
         
-        private PlayerInput _playerInput;
-        
-        // Input actions
-        private InputAction _moveAction;
-        private InputAction _pickUpAction;
-        private InputAction _enterExitBagAction;
-
         private void Awake()
         {
-            _playerInput = GetComponent<PlayerInput>();
-            
             OnPickUpItemInput = new UnityEvent();
             OnEnterExitBagInput = new UnityEvent();
-            
-            _moveAction = _playerInput.actions["Move"];
-            _pickUpAction = _playerInput.actions["Pick Up Item"];
-            _enterExitBagAction = _playerInput.actions["Enter Exit Bag"];
+            OnJumpInput = new UnityEvent();
         }
         
         private void Start()
         {
-            _moveAction.performed += Move;
-            _moveAction.canceled += Move;
+            moveActionReference.action.performed += Move;
+            moveActionReference.action.canceled += Move;
          
-            _pickUpAction.performed += PickUp;
-            _enterExitBagAction.performed += EnterExitBag;
+            pickUpActionReference.action.performed += PickUp;
+            enterExitBagActionReference.action.performed += EnterExitBag;
+            jumpActionReference.action.performed += Jump;
         }
 
         private void OnDestroy()
         {
-            _moveAction.performed -= Move;
-            _moveAction.canceled -= Move;
+            moveActionReference.action.performed -= Move;
+            moveActionReference.action.canceled -= Move;
             
-            _pickUpAction.performed -= PickUp;
-            _enterExitBagAction.performed -= EnterExitBag;
+            pickUpActionReference.action.performed -= PickUp;
+            enterExitBagActionReference.action.performed -= EnterExitBag;
+            jumpActionReference.action.performed -= Jump;
         }
         
         private void Move(InputAction.CallbackContext ctx)
@@ -63,6 +59,11 @@ namespace Player
         private void EnterExitBag(InputAction.CallbackContext ctx)
         {
             OnEnterExitBagInput.Invoke();
+        }
+        
+        private void Jump(InputAction.CallbackContext ctx)
+        {
+            OnJumpInput.Invoke();
         }
     }
 }

@@ -194,6 +194,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cb0194b0894e824e932c3155699bfb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveActionReference: {fileID: 2829511263681403124, guid: b82c872b9032e4a40a61d9eb4f875bcd, type: 3}
+  pickUpActionReference: {fileID: -734753121269108376, guid: b82c872b9032e4a40a61d9eb4f875bcd, type: 3}
+  enterExitBagActionReference: {fileID: 6333746007214408764, guid: b82c872b9032e4a40a61d9eb4f875bcd, type: 3}
+  jumpActionReference: {fileID: 8271838805242729835, guid: b82c872b9032e4a40a61d9eb4f875bcd, type: 3}
 --- !u!114 &6254691805779837168
 MonoBehaviour:
   m_ObjectHideFlags: 0
