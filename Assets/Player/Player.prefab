@@ -217,7 +217,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkAcceleration: 20
   maxWalkSpeed: 20
-  jumpSpeed: -20
+  jumpSpeed: 8
+  landingHorizontalSpeedMultiplier: 0.5
 --- !u!114 &4774147781209077658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,7 +249,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 428fff041ccb71748848ada1c34ae083, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundChecker: {fileID: 4774147781209077658}
 --- !u!114 &7149285536503528281
 MonoBehaviour:
   m_ObjectHideFlags: 0
