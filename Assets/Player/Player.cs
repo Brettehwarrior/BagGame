@@ -10,14 +10,14 @@ namespace Player
 {
     [RequireComponent(typeof(PlayerInputHandler))]
     [RequireComponent(typeof(PlayerMovement))]
-    [RequireComponent(typeof(RaycastGroundChecker))]
+    [RequireComponent(typeof(RaycastSideChecker))]
     public class Player : MonoBehaviour
     {
         private PlayerInputHandler _inputHandler;
         private PlayerMovement _playerMovement;
         private ItemGrabber _itemGrabber;
         private PlayerBagUser _bagUser;
-        private RaycastGroundChecker _groundChecker;
+        private RaycastSideChecker _sideChecker;
 
         private PlayerStateMachine _stateMachine;
      
@@ -29,7 +29,7 @@ namespace Player
 
         // Status
         public Vector2 CurrentVelocity => _playerMovement.CurrentVelocity;
-        public bool IsGrounded => _groundChecker.IsGrounded;
+        public bool IsGrounded => _sideChecker.Bottom;
         public Vector2 MovementInput => _inputHandler.MovementInput;
         public bool JumpInputDown => _inputHandler.JumpInputDown;
         
@@ -39,7 +39,7 @@ namespace Player
             _playerMovement = GetComponent<PlayerMovement>();
             _itemGrabber = GetComponent<ItemGrabber>();
             _bagUser = GetComponent<PlayerBagUser>();
-            _groundChecker = GetComponent<RaycastGroundChecker>();
+            _sideChecker = GetComponent<RaycastSideChecker>();
         }
 
         private void Start()
