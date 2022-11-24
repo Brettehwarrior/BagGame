@@ -17,6 +17,7 @@ namespace Player.StateMachine
         private readonly PlayerState _jumpState;
         private readonly PlayerState _fallState;
         private readonly PlayerState _landState;
+        private readonly PlayerState _wallSlideState;
         
         // Entry state
         public PlayerState StartState => _idleState;
@@ -31,6 +32,7 @@ namespace Player.StateMachine
             _jumpState = new PlayerJumpState(_player);
             _fallState = new PlayerFallState(_player);
             _landState = new PlayerLandState(_player);
+            _wallSlideState = new PlayerWallSlideState(_player);
             
             CreateTransitions();
         }
@@ -47,23 +49,28 @@ namespace Player.StateMachine
             _jumpState.AddTransition(fallTransition);
             _idleState.AddTransition(fallTransition);
             _walkState.AddTransition(fallTransition);
+            _wallSlideState.AddTransition(new StateTransition(_fallState, () =>
+                !(_player.IsCollidingLeft || _player.IsCollidingRight)));
             
             // Transitions to walk state
-            _idleState.AddTransition(new StateTransition(_walkState, 
-                () => Mathf.Abs(_player.MovementInput.x) > 0f
-                ));
+            _idleState.AddTransition(new StateTransition(_walkState, () =>
+                Mathf.Abs(_player.MovementInput.x) > 0f));
             
             // Transitions to idle state
-            _walkState.AddTransition(new StateTransition(_idleState, 
-                () => _player.CurrentVelocity.x == 0f
-                ));
-            _landState.AddTransition(new StateTransition(_idleState, 
-                () => true
-                ));
+            _walkState.AddTransition(new StateTransition(_idleState, () =>
+                _player.CurrentVelocity.x == 0f));
+            _landState.AddTransition(new StateTransition(_idleState, () => true));
             
             // Transitions to land state
             var landTransition = new StateTransition(_landState, () => _player.IsGrounded);
             _fallState.AddTransition(landTransition);
+            _wallSlideState.AddTransition(landTransition);
+            
+            // Transitions to wall slide state
+            var wallSlideTransition = new StateTransition(_wallSlideState, () =>
+                _player.IsCollidingLeft || _player.IsCollidingRight);
+            _jumpState.AddTransition(wallSlideTransition);
+            _fallState.AddTransition(wallSlideTransition);
         }
     }
 }

@@ -22,14 +22,25 @@ namespace Player
         private PlayerStateMachine _stateMachine;
      
         // Properties
+        [Header("Movement Values")]
         [SerializeField] private float walkAcceleration;
+        public float WalkAcceleration => walkAcceleration;
         [SerializeField] private float maxWalkSpeed;
+        public float MaxWalkSpeed => maxWalkSpeed;
+        [SerializeField] private float airAcceleration;
+        public float AirAcceleration => airAcceleration;
+        [SerializeField] private float maxAirSpeed;
+        public float MaxAirSpeed => maxAirSpeed;
         [SerializeField] private float jumpSpeed;
+        public float JumpSpeed => jumpSpeed;
         [SerializeField] private float landingHorizontalSpeedMultiplier;
+        public float LandingHorizontalSpeedMultiplier => landingHorizontalSpeedMultiplier;
 
         // Status
         public Vector2 CurrentVelocity => _playerMovement.CurrentVelocity;
         public bool IsGrounded => _sideChecker.Bottom;
+        public bool IsCollidingLeft => _sideChecker.Left;
+        public bool IsCollidingRight => _sideChecker.Right;
         public Vector2 MovementInput => _inputHandler.MovementInput;
         public bool JumpInputDown => _inputHandler.JumpInputDown;
         
@@ -75,9 +86,9 @@ namespace Player
             _stateMachine.LateUpdate();
         }
 
-        public void DoHorizontalMovement()
+        public void DoHorizontalMovement(float acceleration, float maxSpeed)
         {
-            _playerMovement.AccelerateHorizontal(_inputHandler.MovementInput.x, walkAcceleration, maxWalkSpeed);
+            _playerMovement.AccelerateHorizontal(_inputHandler.MovementInput.x, acceleration, maxSpeed);
         }
         
         private void TryPickUpItem()
@@ -100,6 +111,11 @@ namespace Player
         public void Jump()
         {
             _playerMovement.SetVerticalVelocity(jumpSpeed);
+        }
+        
+        public void MultiplyHorizontalSpeed(float multiplier)
+        {
+            _playerMovement.SetHorizontalVelocity(CurrentVelocity.x * multiplier);
         }
     }
 }

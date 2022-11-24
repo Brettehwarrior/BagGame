@@ -10,7 +10,7 @@ namespace Player.StateMachine.States
         
         public override void Update()
         {
-            player.DoHorizontalMovement();
+            player.DoHorizontalMovement(player.WalkAcceleration, player.MaxWalkSpeed);
         }
         
         public override string ToString()

@@ -217,8 +217,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkAcceleration: 20
   maxWalkSpeed: 20
-  jumpSpeed: 8
-  landingHorizontalSpeedMultiplier: 0.5
+  airAcceleration: 15
+  maxAirSpeed: 22
+  jumpSpeed: 11
+  landingHorizontalSpeedMultiplier: 0.8
 --- !u!114 &4774147781209077658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,8 +237,10 @@ MonoBehaviour:
   environmentLayer:
     serializedVersion: 2
     m_Bits: 8
-  groundCheckSkinWidth: 0.05
-  groundCheckRayCount: 20
+  verticalCheckSkinWidth: 0.05
+  verticalCheckRayCount: 20
+  horizontalCheckSkinWidth: 0.05
+  horizontalCheckRayCount: 20
 --- !u!114 &9042819724404422901
 MonoBehaviour:
   m_ObjectHideFlags: 0

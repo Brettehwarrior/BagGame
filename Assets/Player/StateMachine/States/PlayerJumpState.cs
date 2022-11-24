@@ -12,6 +12,12 @@
             player.Jump();
         }
 
+        public override void Update()
+        {
+            base.Update();
+            player.DoHorizontalMovement(player.AirAcceleration, player.MaxAirSpeed);
+        }
+
         public override string ToString()
         {
             return "JUMP STATE";

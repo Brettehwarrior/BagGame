@@ -6,6 +6,12 @@
         {
         }
 
+        public override void EnterState()
+        {
+            base.EnterState();
+            player.MultiplyHorizontalSpeed(player.LandingHorizontalSpeedMultiplier);
+        }
+
         public override string ToString()
         {
             return "LAND STATE";

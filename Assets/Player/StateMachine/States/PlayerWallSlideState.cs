@@ -1,8 +1,8 @@
 ﻿namespace Player.StateMachine.States
 {
-    public class PlayerFallState : PlayerState
+    public class PlayerWallSlideState : PlayerState
     {
-        public PlayerFallState(Player player) : base(player)
+        public PlayerWallSlideState(Player player) : base(player)
         {
         }
 
@@ -11,10 +11,10 @@
             base.Update();
             player.DoHorizontalMovement(player.AirAcceleration, player.MaxAirSpeed);
         }
-        
+
         public override string ToString()
         {
-            return "FALL STATE";
+            return "WALL SLIDE STATE";
         }
     }
 }
