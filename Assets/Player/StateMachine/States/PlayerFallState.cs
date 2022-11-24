@@ -5,5 +5,10 @@
         public PlayerFallState(Player player) : base(player)
         {
         }
+        
+        public override string ToString()
+        {
+            return "FALL STATE";
+        }
     }
 }

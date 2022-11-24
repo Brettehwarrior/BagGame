@@ -8,9 +8,9 @@ namespace Player.StateMachine.States
         {
         }
 
-        public override void EnterState()
+        public override string ToString()
         {
-            Debug.Log("Entering Idle State");
+            return "IDLE STATE";
         }
     }
 }

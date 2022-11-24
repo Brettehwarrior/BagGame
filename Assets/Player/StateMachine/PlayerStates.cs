@@ -15,6 +15,8 @@ namespace Player.StateMachine
         private readonly PlayerState _idleState;
         private readonly PlayerState _walkState;
         private readonly PlayerState _jumpState;
+        private readonly PlayerState _fallState;
+        private readonly PlayerState _landState;
         
         // Entry state
         public PlayerState StartState => _idleState;
@@ -26,24 +28,42 @@ namespace Player.StateMachine
             // States
             _idleState = new PlayerIdleState(_player);
             _walkState = new PlayerWalkState(_player);
+            _jumpState = new PlayerJumpState(_player);
+            _fallState = new PlayerFallState(_player);
+            _landState = new PlayerLandState(_player);
             
             CreateTransitions();
         }
         
         private void CreateTransitions()
         {
-            // var jumpTransition = new StateTransition();
+            // Transitions to jump state
+            var jumpTransition = new StateTransition(_jumpState, () => _player.JumpInputDown);
+            _idleState.AddTransition(jumpTransition);
+            _walkState.AddTransition(jumpTransition);
             
-            // Idle
+            // Transitions to fall state
+            var fallTransition = new StateTransition(_fallState, () => _player.CurrentVelocity.y < 0);
+            _jumpState.AddTransition(fallTransition);
+            _idleState.AddTransition(fallTransition);
+            _walkState.AddTransition(fallTransition);
+            
+            // Transitions to walk state
             _idleState.AddTransition(new StateTransition(_walkState, 
-                () => _player.CurrentVelocity.x != 0f
-                        && Mathf.Abs(_player.MovementInput.x) > 0f
+                () => Mathf.Abs(_player.MovementInput.x) > 0f
                 ));
             
-            // Walk
+            // Transitions to idle state
             _walkState.AddTransition(new StateTransition(_idleState, 
                 () => _player.CurrentVelocity.x == 0f
                 ));
+            _landState.AddTransition(new StateTransition(_idleState, 
+                () => true
+                ));
+            
+            // Transitions to land state
+            var landTransition = new StateTransition(_landState, () => _player.IsGrounded);
+            _fallState.AddTransition(landTransition);
         }
     }
 }

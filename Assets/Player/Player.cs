@@ -10,22 +10,28 @@ namespace Player
 {
     [RequireComponent(typeof(PlayerInputHandler))]
     [RequireComponent(typeof(PlayerMovement))]
+    [RequireComponent(typeof(RaycastGroundChecker))]
     public class Player : MonoBehaviour
     {
         private PlayerInputHandler _inputHandler;
         private PlayerMovement _playerMovement;
         private ItemGrabber _itemGrabber;
         private PlayerBagUser _bagUser;
+        private RaycastGroundChecker _groundChecker;
 
         private PlayerStateMachine _stateMachine;
      
         // Properties
         [SerializeField] private float walkAcceleration;
         [SerializeField] private float maxWalkSpeed;
+        [SerializeField] private float jumpSpeed;
+        [SerializeField] private float landingHorizontalSpeedMultiplier;
 
         // Status
         public Vector2 CurrentVelocity => _playerMovement.CurrentVelocity;
+        public bool IsGrounded => _groundChecker.IsGrounded;
         public Vector2 MovementInput => _inputHandler.MovementInput;
+        public bool JumpInputDown => _inputHandler.JumpInputDown;
         
         private void Awake()
         {
@@ -33,6 +39,7 @@ namespace Player
             _playerMovement = GetComponent<PlayerMovement>();
             _itemGrabber = GetComponent<ItemGrabber>();
             _bagUser = GetComponent<PlayerBagUser>();
+            _groundChecker = GetComponent<RaycastGroundChecker>();
         }
 
         private void Start()
@@ -51,12 +58,10 @@ namespace Player
         {
             _inputHandler.OnPickUpItemInput.AddListener(TryPickUpItem); // TODO: This gets fired once on play (because left click starts game maybe?)
             _inputHandler.OnEnterExitBagInput.AddListener(EnterExitBag);
-            _inputHandler.OnJumpInput.AddListener(Jump);
         }
 
         private void Update()
         {
-            DoMovement();
             _stateMachine.Update();
         }
 
@@ -70,7 +75,7 @@ namespace Player
             _stateMachine.LateUpdate();
         }
 
-        private void DoMovement()
+        public void DoHorizontalMovement()
         {
             _playerMovement.AccelerateHorizontal(_inputHandler.MovementInput.x, walkAcceleration, maxWalkSpeed);
         }
@@ -92,9 +97,9 @@ namespace Player
             }
         }
 
-        private void Jump()
+        public void Jump()
         {
-            
+            _playerMovement.SetVerticalVelocity(jumpSpeed);
         }
     }
 }

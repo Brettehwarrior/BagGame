@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using FiniteStateMachine;
+using UnityEngine;
 
 namespace Player.StateMachine
 {
@@ -19,5 +20,11 @@ namespace Player.StateMachine
         public virtual void Update() {}
         public virtual void FixedUpdate() {}
         public virtual void LateUpdate() {}
+
+        public override void EnterState()
+        {
+            base.EnterState();
+            Debug.Log(ToString());
+        }
     }
 }

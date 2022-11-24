@@ -10,7 +10,6 @@ namespace Player
     {
         private Rigidbody2D _rigidbody;
         
-
         public Vector2 CurrentVelocity => _rigidbody.velocity;
         
         private void Awake()

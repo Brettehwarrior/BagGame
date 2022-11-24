@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 
 namespace Player
 {
-    [RequireComponent(typeof(PlayerInput))]
     public class PlayerInputHandler : MonoBehaviour
     {
         [SerializeField] private InputActionReference moveActionReference;
@@ -16,15 +15,30 @@ namespace Player
         public Vector2 MovementInput { get; private set; }
         public UnityEvent OnPickUpItemInput { get; private set; }
         public UnityEvent OnEnterExitBagInput { get; private set; }
-        public UnityEvent OnJumpInput { get; private set; }
+        public bool JumpInputDown { get; private set; }
         
         private void Awake()
         {
             OnPickUpItemInput = new UnityEvent();
             OnEnterExitBagInput = new UnityEvent();
-            OnJumpInput = new UnityEvent();
+        }
+
+        private void OnEnable()
+        {
+            moveActionReference.action.Enable();
+            pickUpActionReference.action.Enable();
+            enterExitBagActionReference.action.Enable();
+            jumpActionReference.action.Enable();
         }
         
+        private void OnDisable()
+        {
+            moveActionReference.action.Disable();
+            pickUpActionReference.action.Disable();
+            enterExitBagActionReference.action.Disable();
+            jumpActionReference.action.Disable();
+        }
+
         private void Start()
         {
             moveActionReference.action.performed += Move;
@@ -32,7 +46,6 @@ namespace Player
          
             pickUpActionReference.action.performed += PickUp;
             enterExitBagActionReference.action.performed += EnterExitBag;
-            jumpActionReference.action.performed += Jump;
         }
 
         private void OnDestroy()
@@ -42,9 +55,13 @@ namespace Player
             
             pickUpActionReference.action.performed -= PickUp;
             enterExitBagActionReference.action.performed -= EnterExitBag;
-            jumpActionReference.action.performed -= Jump;
         }
-        
+
+        private void Update()
+        {
+            JumpInputDown = jumpActionReference.action.WasPerformedThisFrame();
+        }
+
         private void Move(InputAction.CallbackContext ctx)
         {
             var direction = ctx.ReadValue<Vector2>();
@@ -59,11 +76,6 @@ namespace Player
         private void EnterExitBag(InputAction.CallbackContext ctx)
         {
             OnEnterExitBagInput.Invoke();
-        }
-        
-        private void Jump(InputAction.CallbackContext ctx)
-        {
-            OnJumpInput.Invoke();
         }
     }
 }

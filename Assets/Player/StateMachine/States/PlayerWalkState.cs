@@ -8,9 +8,14 @@ namespace Player.StateMachine.States
         {
         }
         
-        public override void EnterState()
+        public override void Update()
         {
-            Debug.Log("Entering Walk State");
+            player.DoHorizontalMovement();
+        }
+        
+        public override string ToString()
+        {
+            return "WALK STATE";
         }
     }
 }
