@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Player.StateMachine.States
 {
@@ -11,6 +12,12 @@ namespace Player.StateMachine.States
         public override void Update()
         {
             player.DoHorizontalMovement(player.WalkAcceleration, player.MaxWalkSpeed);
+
+            // Apply friction if input is not in direction of movement
+            if (Math.Sign(player.MovementInput.x) != Math.Sign(player.CurrentVelocity.x))
+            {
+                player.ApplyHorizontalFriction(player.GroundFriction);
+            }
         }
         
         public override string ToString()

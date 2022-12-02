@@ -23,16 +23,36 @@ namespace Player
      
         // Properties
         [Header("Movement Values")]
+        
+        [Tooltip("Acceleration while on ground")]
         [SerializeField] private float walkAcceleration;
         public float WalkAcceleration => walkAcceleration;
+        
+        [Tooltip("Maximum horizontal speed while on ground")]
         [SerializeField] private float maxWalkSpeed;
         public float MaxWalkSpeed => maxWalkSpeed;
+        
+        [Tooltip("Friction while on ground")]
+        [SerializeField] private float groundFriction;
+        public float GroundFriction => groundFriction;
+        
+        [Tooltip("Acceleration while in air")]
         [SerializeField] private float airAcceleration;
         public float AirAcceleration => airAcceleration;
+        
+        [Tooltip("Maximum horizontal speed while in air")]
         [SerializeField] private float maxAirSpeed;
         public float MaxAirSpeed => maxAirSpeed;
+        
+        [Tooltip("Friction while in air")]
+        [SerializeField] private float airFriction;
+        public float AirFriction => airFriction;
+        
+        [Tooltip("Instantaneous vertical speed when jumping")]
         [SerializeField] private float jumpSpeed;
         public float JumpSpeed => jumpSpeed;
+        
+        [Tooltip("Multiplier for current horizontal velocity when landing")]
         [SerializeField] private float landingHorizontalSpeedMultiplier;
         public float LandingHorizontalSpeedMultiplier => landingHorizontalSpeedMultiplier;
 
@@ -116,6 +136,11 @@ namespace Player
         public void MultiplyHorizontalSpeed(float multiplier)
         {
             _playerMovement.SetHorizontalVelocity(CurrentVelocity.x * multiplier);
+        }
+        
+        public void ApplyHorizontalFriction(float friction)
+        {
+            _playerMovement.FrictionHorizontal(friction);
         }
     }
 }

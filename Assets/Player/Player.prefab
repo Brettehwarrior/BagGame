@@ -215,12 +215,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ade365eeb8bd904485de021dd5e9d0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkAcceleration: 20
+  walkAcceleration: 40
   maxWalkSpeed: 20
-  airAcceleration: 15
+  groundFriction: 50
+  airAcceleration: 35
   maxAirSpeed: 22
-  jumpSpeed: 11
-  landingHorizontalSpeedMultiplier: 0.5
+  airFriction: 40
+  jumpSpeed: 16
+  landingHorizontalSpeedMultiplier: 1
 --- !u!114 &4774147781209077658
 MonoBehaviour:
   m_ObjectHideFlags: 0

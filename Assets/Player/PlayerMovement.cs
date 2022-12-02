@@ -49,5 +49,11 @@ namespace Player
             var newHorizontalVelocity = CurrentVelocity.x + desiredAcceleration;
             SetHorizontalVelocity(newHorizontalVelocity);
         }
+        
+        public void FrictionHorizontal(float friction)
+        {
+            var newHorizontalVelocity = Mathf.Max(Mathf.Abs(CurrentVelocity.x) - friction * Time.deltaTime, 0f) * Mathf.Sign(CurrentVelocity.x);
+            SetHorizontalVelocity(newHorizontalVelocity);
+        }
     }
 }
