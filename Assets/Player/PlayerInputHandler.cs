@@ -14,13 +14,12 @@ namespace Player
         
         public Vector2 MovementInput { get; private set; }
         public UnityEvent OnPickUpItemInput { get; private set; }
-        public UnityEvent OnEnterExitBagInput { get; private set; }
+        public bool EnterExitBagInputDown { get; private set; }
         public bool JumpInputDown { get; private set; }
         
         private void Awake()
         {
             OnPickUpItemInput = new UnityEvent();
-            OnEnterExitBagInput = new UnityEvent();
         }
 
         private void OnEnable()
@@ -45,7 +44,6 @@ namespace Player
             moveActionReference.action.canceled += Move;
          
             pickUpActionReference.action.performed += PickUp;
-            enterExitBagActionReference.action.performed += EnterExitBag;
         }
 
         private void OnDestroy()
@@ -54,11 +52,11 @@ namespace Player
             moveActionReference.action.canceled -= Move;
             
             pickUpActionReference.action.performed -= PickUp;
-            enterExitBagActionReference.action.performed -= EnterExitBag;
         }
 
         private void Update()
         {
+            EnterExitBagInputDown = enterExitBagActionReference.action.WasPerformedThisFrame();
             JumpInputDown = jumpActionReference.action.WasPerformedThisFrame();
         }
 
@@ -71,11 +69,6 @@ namespace Player
         private void PickUp(InputAction.CallbackContext ctx)
         {
             OnPickUpItemInput.Invoke();
-        }
-
-        private void EnterExitBag(InputAction.CallbackContext ctx)
-        {
-            OnEnterExitBagInput.Invoke();
         }
     }
 }

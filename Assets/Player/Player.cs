@@ -62,6 +62,8 @@ namespace Player
         public bool IsCollidingLeft => _sideChecker.Left;
         public bool IsCollidingRight => _sideChecker.Right;
         public Vector2 MovementInput => _inputHandler.MovementInput;
+        public bool EnterExitBagInputDown => _inputHandler.EnterExitBagInputDown;
+        public bool InBag => _bagUser.InBag;
         public bool JumpInputDown => _inputHandler.JumpInputDown;
         
         private void Awake()
@@ -88,7 +90,6 @@ namespace Player
         private void SubscribeInputActions()
         {
             _inputHandler.OnPickUpItemInput.AddListener(TryPickUpItem); // TODO: This gets fired once on play (because left click starts game maybe?)
-            _inputHandler.OnEnterExitBagInput.AddListener(EnterExitBag);
         }
 
         private void Update()
@@ -116,18 +117,16 @@ namespace Player
             _itemGrabber.TryPickUpDropItem();
         }
 
-        private void EnterExitBag()
+        public void EnterBag()
         {
-            if (_bagUser.InBag)
-            {
-                _bagUser.ExitBag();
-            }
-            else
-            {
-                _bagUser.EnterBag();
-            }
+            _bagUser.EnterBag();
         }
-
+        
+        public void ExitBag()
+        {
+            _bagUser.ExitBag();
+        }
+        
         public void Jump()
         {
             _playerMovement.SetVerticalVelocity(jumpSpeed);
