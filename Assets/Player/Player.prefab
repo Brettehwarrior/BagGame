@@ -222,7 +222,7 @@ MonoBehaviour:
   maxAirSpeed: 22
   airFriction: 40
   jumpSpeed: 16
-  landingHorizontalSpeedMultiplier: 1
+  landingHorizontalSpeedMultiplier: 0.2
 --- !u!114 &4774147781209077658
 MonoBehaviour:
   m_ObjectHideFlags: 0

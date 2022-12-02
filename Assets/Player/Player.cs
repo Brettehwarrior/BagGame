@@ -52,7 +52,7 @@ namespace Player
         [SerializeField] private float jumpSpeed;
         public float JumpSpeed => jumpSpeed;
         
-        [Tooltip("Multiplier for current horizontal velocity when landing")]
+        [Tooltip("Multiplier for current horizontal velocity when landing without input")]
         [SerializeField] private float landingHorizontalSpeedMultiplier;
         public float LandingHorizontalSpeedMultiplier => landingHorizontalSpeedMultiplier;
 
