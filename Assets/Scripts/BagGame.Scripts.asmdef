@@ -1,0 +1,16 @@
+{
+    "name": "BagGame.Scripts",
+    "rootNamespace": "",
+    "references": [
+        "GUID:748baa3e305b3974491f2c46c0353295"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
