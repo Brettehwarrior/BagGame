@@ -778,6 +778,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b63c04205132cd4bb4d42c4bdba5206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tweenResizer: {fileID: 3898554781265317203}
 --- !u!1 &7568286697733409633
 GameObject:
   m_ObjectHideFlags: 0
