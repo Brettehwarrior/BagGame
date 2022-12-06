@@ -215,6 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ade365eeb8bd904485de021dd5e9d0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  standingFriction: 1000
   walkAcceleration: 40
   maxWalkSpeed: 20
   groundFriction: 50
@@ -289,7 +290,6 @@ MonoBehaviour:
   bag: {fileID: 1564199018}
   bagTransform: {fileID: 7568286698641908099}
   bagParent: {fileID: 7030794662693017146}
-  bagDimensionImageResizer: {fileID: 3898554782188819374}
 --- !u!1 &5432279068740299644
 GameObject:
   m_ObjectHideFlags: 0
@@ -979,17 +979,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b63c04205132cd4bb4d42c4bdba5206, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3898554782188819374 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3898554781265317203, guid: ca1d0f811a58a3241bcd9f2b3da8d6ec, type: 3}
-  m_PrefabInstance: {fileID: 1266392829}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3602cdfdc9827cd4c9f1736cb7d38479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &7568286698641908099 stripped

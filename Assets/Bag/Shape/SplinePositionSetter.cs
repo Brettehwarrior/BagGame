@@ -4,7 +4,6 @@ using UnityEngine.U2D;
 
 namespace Bag.Shape
 {
-    [ExecuteInEditMode]
     public class SplinePositionSetter : MonoBehaviour
     {
         private const float SplineOffset = 0.5f;
