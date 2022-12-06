@@ -10,7 +10,6 @@ namespace Player
     {
         private Rigidbody2D _rigidbody;
         
-
         public Vector2 CurrentVelocity => _rigidbody.velocity;
         
         private void Awake()
@@ -48,6 +47,12 @@ namespace Player
                 desiredAcceleration -= Mathf.Min(Mathf.Abs(desiredAcceleration), Mathf.Abs(CurrentVelocity.x + desiredAcceleration) - maxSpeed) * Mathf.Sign(CurrentVelocity.x);
             
             var newHorizontalVelocity = CurrentVelocity.x + desiredAcceleration;
+            SetHorizontalVelocity(newHorizontalVelocity);
+        }
+        
+        public void FrictionHorizontal(float friction)
+        {
+            var newHorizontalVelocity = Mathf.Max(Mathf.Abs(CurrentVelocity.x) - friction * Time.deltaTime, 0f) * Mathf.Sign(CurrentVelocity.x);
             SetHorizontalVelocity(newHorizontalVelocity);
         }
     }

@@ -5,50 +5,61 @@ using UnityEngine.InputSystem;
 
 namespace Player
 {
-    [RequireComponent(typeof(PlayerInput))]
     public class PlayerInputHandler : MonoBehaviour
     {
+        [SerializeField] private InputActionReference moveActionReference;
+        [SerializeField] private InputActionReference pickUpActionReference;
+        [SerializeField] private InputActionReference enterExitBagActionReference;
+        [SerializeField] private InputActionReference jumpActionReference;
+        
         public Vector2 MovementInput { get; private set; }
         public UnityEvent OnPickUpItemInput { get; private set; }
-        public UnityEvent OnEnterExitBagInput { get; private set; }
+        public bool EnterExitBagInputDown { get; private set; }
+        public bool JumpInputDown { get; private set; }
         
-        private PlayerInput _playerInput;
-        
-        // Input actions
-        private InputAction _moveAction;
-        private InputAction _pickUpAction;
-        private InputAction _enterExitBagAction;
-
         private void Awake()
         {
-            _playerInput = GetComponent<PlayerInput>();
-            
             OnPickUpItemInput = new UnityEvent();
-            OnEnterExitBagInput = new UnityEvent();
-            
-            _moveAction = _playerInput.actions["Move"];
-            _pickUpAction = _playerInput.actions["Pick Up Item"];
-            _enterExitBagAction = _playerInput.actions["Enter Exit Bag"];
+        }
+
+        private void OnEnable()
+        {
+            moveActionReference.action.Enable();
+            pickUpActionReference.action.Enable();
+            enterExitBagActionReference.action.Enable();
+            jumpActionReference.action.Enable();
         }
         
+        private void OnDisable()
+        {
+            moveActionReference.action.Disable();
+            pickUpActionReference.action.Disable();
+            enterExitBagActionReference.action.Disable();
+            jumpActionReference.action.Disable();
+        }
+
         private void Start()
         {
-            _moveAction.performed += Move;
-            _moveAction.canceled += Move;
+            moveActionReference.action.performed += Move;
+            moveActionReference.action.canceled += Move;
          
-            _pickUpAction.performed += PickUp;
-            _enterExitBagAction.performed += EnterExitBag;
+            pickUpActionReference.action.performed += PickUp;
         }
 
         private void OnDestroy()
         {
-            _moveAction.performed -= Move;
-            _moveAction.canceled -= Move;
+            moveActionReference.action.performed -= Move;
+            moveActionReference.action.canceled -= Move;
             
-            _pickUpAction.performed -= PickUp;
-            _enterExitBagAction.performed -= EnterExitBag;
+            pickUpActionReference.action.performed -= PickUp;
         }
-        
+
+        private void Update()
+        {
+            EnterExitBagInputDown = enterExitBagActionReference.action.WasPerformedThisFrame();
+            JumpInputDown = jumpActionReference.action.WasPerformedThisFrame();
+        }
+
         private void Move(InputAction.CallbackContext ctx)
         {
             var direction = ctx.ReadValue<Vector2>();
@@ -58,11 +69,6 @@ namespace Player
         private void PickUp(InputAction.CallbackContext ctx)
         {
             OnPickUpItemInput.Invoke();
-        }
-
-        private void EnterExitBag(InputAction.CallbackContext ctx)
-        {
-            OnEnterExitBagInput.Invoke();
         }
     }
 }
