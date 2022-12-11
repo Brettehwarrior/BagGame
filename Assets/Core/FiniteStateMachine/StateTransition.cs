@@ -1,7 +1,6 @@
 ﻿using System;
-using Player.StateMachine;
 
-namespace FiniteStateMachine
+namespace Core.FiniteStateMachine
 {
     /// <summary>
     /// Transitions contain a target state, and a condition function to meet to switch to that state

@@ -1,4 +1,4 @@
-﻿namespace FiniteStateMachine
+﻿namespace Core.FiniteStateMachine
 {
     /// <summary>
     /// State Machine responsible for keeping track of the current state of the player and switching between states

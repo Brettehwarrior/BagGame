@@ -1,4 +1,4 @@
-﻿using FiniteStateMachine;
+﻿using Core.FiniteStateMachine;
 
 namespace Player.StateMachine
 {

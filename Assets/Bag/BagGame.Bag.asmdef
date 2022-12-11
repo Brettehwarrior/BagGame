@@ -1,0 +1,19 @@
+{
+    "name": "Bag",
+    "rootNamespace": "",
+    "references": [
+        "GUID:748baa3e305b3974491f2c46c0353295",
+        "GUID:cecf19c99ecf10249840fc5a3a2f2180",
+        "GUID:6683ef6edf20d93438b014f114698ca9",
+        "GUID:caccfbdb442cdc64fa722b4c5585521f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

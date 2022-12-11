@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using External.LeanTween.Framework;
 using UnityEngine;
 
 public class TweenResizer : MonoBehaviour

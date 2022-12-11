@@ -1,0 +1,19 @@
+{
+    "name": "BagGame.Player",
+    "rootNamespace": "",
+    "references": [
+        "GUID:e18c203d978a1ec479731048f8339623",
+        "GUID:3a56e81cddf75fc48bc6b3b182d3d39d",
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:2e716d86c53c13f43b875ce56780f049"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

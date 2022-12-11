@@ -1,4 +1,4 @@
-﻿using FiniteStateMachine;
+﻿using Core.FiniteStateMachine;
 using Player.StateMachine.States;
 using UnityEngine;
 

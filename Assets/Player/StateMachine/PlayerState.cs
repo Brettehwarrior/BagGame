@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using FiniteStateMachine;
+using Core.FiniteStateMachine;
 using UnityEngine;
 
 namespace Player.StateMachine

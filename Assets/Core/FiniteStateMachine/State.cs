@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Player.StateMachine;
 
-namespace FiniteStateMachine
+namespace Core.FiniteStateMachine
 {
     public abstract class State
     {

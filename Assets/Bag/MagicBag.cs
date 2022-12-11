@@ -11,6 +11,7 @@ namespace Bag
     public class MagicBag : MonoBehaviour
     {
         private BagShapeController _bagShapeController;
+        [SerializeField] private TweenResizer tweenResizer;
 
         private void Awake()
         {
@@ -48,6 +49,16 @@ namespace Bag
         {
             Debug.Log("Item count: " + itemCount);
             _bagShapeController.UpdateBagShapeByItemCount(itemCount);
+        }
+        
+        public void ShowBagDimensionPreview()
+        {
+            tweenResizer.Grow();
+        }
+        
+        public void HideBagDimensionPreview()
+        {
+            tweenResizer.Shrink();
         }
     }
 }
