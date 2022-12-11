@@ -55,5 +55,10 @@ namespace Player
             var newHorizontalVelocity = Mathf.Max(Mathf.Abs(CurrentVelocity.x) - friction * Time.deltaTime, 0f) * Mathf.Sign(CurrentVelocity.x);
             SetHorizontalVelocity(newHorizontalVelocity);
         }
+        
+        public void SetGravityScale(float gravityScale)
+        {
+            _rigidbody.gravityScale = gravityScale;
+        }
     }
 }

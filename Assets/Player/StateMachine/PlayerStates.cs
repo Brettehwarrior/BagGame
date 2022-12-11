@@ -43,13 +43,33 @@ namespace Player.StateMachine
         
         private void CreateTransitions()
         {
+            // Transitions to enter bag state
+            var enterBagTransition = new StateTransition(_enterBagState, () =>
+                _player.EnterExitBagInputDown && !_player.InBag);
+            _idleState.AddTransition(enterBagTransition);
+            _walkState.AddTransition(enterBagTransition);
+            _jumpState.AddTransition(enterBagTransition);
+            _fallState.AddTransition(enterBagTransition);
+            _landState.AddTransition(enterBagTransition);
+            _wallSlideState.AddTransition(enterBagTransition);
+            
+            // Transitions to exit bag state
+            var exitBagTransition = new StateTransition(_exitBagState, () =>
+                _player.EnterExitBagInputDown && _player.InBag);
+            _idleState.AddTransition(exitBagTransition);
+            _walkState.AddTransition(exitBagTransition);
+            _jumpState.AddTransition(exitBagTransition);
+            _fallState.AddTransition(exitBagTransition);
+            _landState.AddTransition(exitBagTransition);
+            _wallSlideState.AddTransition(exitBagTransition);
+
             // Transitions to jump state
             var jumpTransition = new StateTransition(_jumpState, () => _player.JumpInputDown);
             _idleState.AddTransition(jumpTransition);
             _walkState.AddTransition(jumpTransition);
             
             // Transitions to fall state
-            var fallTransition = new StateTransition(_fallState, () => _player.CurrentVelocity.y < 0);
+            var fallTransition = new StateTransition(_fallState, () => _player.CurrentVelocity.y < 0 && !_player.IsGrounded);
             _jumpState.AddTransition(fallTransition);
             _idleState.AddTransition(fallTransition);
             _walkState.AddTransition(fallTransition);
@@ -78,26 +98,6 @@ namespace Player.StateMachine
                 _player.IsCollidingLeft || _player.IsCollidingRight);
             _jumpState.AddTransition(wallSlideTransition);
             _fallState.AddTransition(wallSlideTransition);
-            
-            // Transitions to enter bag state
-            var enterBagTransition = new StateTransition(_enterBagState, () =>
-                _player.EnterExitBagInputDown && !_player.InBag);
-            _idleState.AddTransition(enterBagTransition);
-            _walkState.AddTransition(enterBagTransition);
-            _jumpState.AddTransition(enterBagTransition);
-            _fallState.AddTransition(enterBagTransition);
-            _landState.AddTransition(enterBagTransition);
-            _wallSlideState.AddTransition(enterBagTransition);
-            
-            // Transitions to exit bag state
-            var exitBagTransition = new StateTransition(_exitBagState, () =>
-                _player.EnterExitBagInputDown && _player.InBag);
-            _idleState.AddTransition(exitBagTransition);
-            _walkState.AddTransition(exitBagTransition);
-            _jumpState.AddTransition(exitBagTransition);
-            _fallState.AddTransition(exitBagTransition);
-            _landState.AddTransition(exitBagTransition);
-            _wallSlideState.AddTransition(exitBagTransition);
         }
     }
 }

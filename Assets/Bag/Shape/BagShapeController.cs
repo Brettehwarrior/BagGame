@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace Bag.Shape
 {
-    [ExecuteInEditMode]
     public class BagShapeController : MonoBehaviour
     {
         [SerializeField] private SplinePositionSetter splinePositionSetter;

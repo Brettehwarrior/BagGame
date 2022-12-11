@@ -25,35 +25,48 @@ namespace Player
         [Header("Movement Values")]
         
         [Tooltip("Acceleration while on ground")]
-        [SerializeField] private float walkAcceleration;
+        [SerializeField]
+        private float walkAcceleration;
         public float WalkAcceleration => walkAcceleration;
         
         [Tooltip("Maximum horizontal speed while on ground")]
-        [SerializeField] private float maxWalkSpeed;
+        [SerializeField]
+        private float maxWalkSpeed;
         public float MaxWalkSpeed => maxWalkSpeed;
         
         [Tooltip("Friction while on ground")]
-        [SerializeField] private float groundFriction;
+        [SerializeField]
+        private float groundFriction;
         public float GroundFriction => groundFriction;
         
         [Tooltip("Acceleration while in air")]
-        [SerializeField] private float airAcceleration;
+        [SerializeField]
+        private float airAcceleration;
         public float AirAcceleration => airAcceleration;
         
         [Tooltip("Maximum horizontal speed while in air")]
-        [SerializeField] private float maxAirSpeed;
+        [SerializeField]
+        private float maxAirSpeed;
         public float MaxAirSpeed => maxAirSpeed;
         
         [Tooltip("Friction while in air")]
-        [SerializeField] private float airFriction;
+        [SerializeField]
+        private float airFriction;
         public float AirFriction => airFriction;
         
         [Tooltip("Instantaneous vertical speed when jumping")]
-        [SerializeField] private float jumpSpeed;
+        [SerializeField]
+        private float jumpSpeed;
         public float JumpSpeed => jumpSpeed;
         
+        [Tooltip("Default Gravity Scale")]
+        [SerializeField]
+        private float gravityScale = 1f;
+        public float GravityScale => gravityScale;
+        
         [Tooltip("Multiplier for current horizontal velocity when landing without input")]
-        [SerializeField] private float landingHorizontalSpeedMultiplier;
+        [SerializeField]
+        private float landingHorizontalSpeedMultiplier;
         public float LandingHorizontalSpeedMultiplier => landingHorizontalSpeedMultiplier;
 
         // Status
@@ -140,6 +153,11 @@ namespace Player
         public void ApplyHorizontalFriction(float friction)
         {
             _playerMovement.FrictionHorizontal(friction);
+        }
+        
+        public void SetGravityScale(float gravityScale)
+        {
+            _playerMovement.SetGravityScale(gravityScale);
         }
     }
 }
