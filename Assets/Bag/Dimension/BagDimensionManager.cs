@@ -19,7 +19,6 @@ namespace Bag.Dimension
         {
             public Transform transform;
             public Transform previousParent;
-            public string previousScene;
         }
         
         private readonly List<StoredObject> _storedObjects = new();
@@ -55,8 +54,7 @@ namespace Bag.Dimension
             _storedObjects.Add(new StoredObject
             {
                 transform = objectTransform,
-                previousParent = objectTransform.parent,
-                previousScene = objectTransform.gameObject.scene.name
+                previousParent = objectTransform.parent
             });
 
             objectTransform.parent = storedObjectsParent;
@@ -75,7 +73,7 @@ namespace Bag.Dimension
             if (storedObject.previousParent == null)
             {
                 objectTransform.parent = null;
-                CustomSceneManager.MoveObjectToScene(objectTransform.gameObject, storedObject.previousScene);
+                CustomSceneManager.MoveObjectToScene(objectTransform.gameObject, CustomSceneManager.CurrentPrimarySceneType);
             }
             else
             {

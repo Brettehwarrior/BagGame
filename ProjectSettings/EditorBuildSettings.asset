@@ -6,9 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/TestMovement.unity
-    guid: a59f0cc35b6ede1469b6dab1329a74c5
-  - enabled: 1
     path: Assets/Scenes/BagDimension.unity
     guid: 6bae4bc9e5fc2ca40bb5c0b1e7d80f4c
+  - enabled: 1
+    path: Assets/Scenes/SceneSelectionScene.unity
+    guid: 9d52b37e3226a5345bea40cdc459c5b3
+  - enabled: 1
+    path: Assets/Scenes/DemoScene1.unity
+    guid: a59f0cc35b6ede1469b6dab1329a74c5
+  - enabled: 1
+    path: Assets/Scenes/DemoScene2.unity
+    guid: f58c8cf403f88314b9ca5d2424dc7d41
   m_configObjects: {}

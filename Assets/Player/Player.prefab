@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 6316530944867384452}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -215,7 +215,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ade365eeb8bd904485de021dd5e9d0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standingFriction: 1000
   walkAcceleration: 40
   maxWalkSpeed: 20
   groundFriction: 50
@@ -223,6 +222,7 @@ MonoBehaviour:
   maxAirSpeed: 22
   airFriction: 40
   jumpSpeed: 16
+  gravityScale: 1
   landingHorizontalSpeedMultiplier: 0.2
 --- !u!114 &4774147781209077658
 MonoBehaviour:

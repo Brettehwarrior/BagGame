@@ -18,7 +18,7 @@ namespace Bag
             _bagShapeController = GetComponent<BagShapeController>();
             
             // Initialize Bag Dimension Scene
-            CustomSceneManager.LoadScene(CustomSceneManager.Scenes.BagDimension);
+            CustomSceneManager.LoadScene(CustomSceneManager.SceneType.BagDimension);
         }
 
         private void Start()
