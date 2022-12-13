@@ -70,13 +70,10 @@ public static class CustomSceneManager
     /// </summary>
     /// <param name="sceneName">String name of scene to load as primary</param>
     public static void LoadPrimaryScene(SceneType sceneType)
-    {
-        if (IsSceneLoaded(sceneType))
-            return;
-        
+    {   
         UnloadPrimaryScene();
-        LoadScene(sceneType, LoadSceneMode.Additive);
         CurrentPrimarySceneType = sceneType;
+        LoadScene(sceneType, LoadSceneMode.Additive);
     }
     
     /// <summary>
