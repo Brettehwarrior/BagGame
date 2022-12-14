@@ -9,7 +9,7 @@ public class LoadSceneOnTriggerEnter : MonoBehaviour
     {
         if (other.CompareTag(tagToCheck))
         {
-            CustomSceneManager.LoadPrimaryScene(sceneType);
+            CustomSceneManager.LoadScene(sceneType);
         }
     }
 }

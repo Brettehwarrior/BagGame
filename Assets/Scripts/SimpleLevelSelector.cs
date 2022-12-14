@@ -19,12 +19,12 @@ public class SimpleLevelSelector : MonoBehaviour
     {
         foreach (var levelButton in levelButtons)
         {
-            levelButton.button.onClick.AddListener(() => CustomSceneManager.LoadPrimaryScene(levelButton.sceneType));
+            levelButton.button.onClick.AddListener(() => CustomSceneManager.LoadScene(levelButton.sceneType));
         }
     }
 
     public void LoadScene(CustomSceneManager.SceneType sceneType)
     {
-        CustomSceneManager.LoadPrimaryScene(sceneType);
+        CustomSceneManager.LoadScene(sceneType);
     }
 }

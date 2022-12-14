@@ -516,7 +516,7 @@ GameObject:
   - component: {fileID: 875205140}
   - component: {fileID: 875205139}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Demo Scene 1 Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -638,7 +638,7 @@ GameObject:
   - component: {fileID: 1028287461}
   - component: {fileID: 1028287460}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Demo Scene 2 Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1030,9 +1030,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelButtons:
-  - sceneType: 2
-    button: {fileID: 875205139}
   - sceneType: 3
+    button: {fileID: 875205139}
+  - sceneType: 4
     button: {fileID: 1028287460}
 --- !u!4 &1811451533
 Transform:
