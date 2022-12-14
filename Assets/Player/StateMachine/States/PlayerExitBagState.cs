@@ -9,7 +9,11 @@
         public override void EnterState()
         {
             base.EnterState();
-            player.ExitBag();
+            player.Bag.DisableDimensionCameraFollow();
+            player.Bag.ExitBag(player.transform);
+            player.BagParentTransform.SetParent(player.transform);
+            player.Bag.HideBagDimensionPreview();
+            player.InBag = false;
         }
 
         public override string ToString()

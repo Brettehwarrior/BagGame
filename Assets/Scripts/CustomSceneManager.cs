@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 
 public static class CustomSceneManager
 {
-    [System.Serializable]
+    [Serializable]
     public enum SceneType
     {
+        None = 0,
         BagDimension,
         SceneSelectionScene,
         DemoScene1,
@@ -21,10 +22,25 @@ public static class CustomSceneManager
         {SceneType.DemoScene1, "DemoScene1"},
         {SceneType.DemoScene2, "DemoScene2"}
     };
-    
-    public static SceneType CurrentPrimarySceneType { get; private set; } //TODO: Primary scene is not set on game start. Consider setting it, or implementing a way to unload all scenes except for some excluded ones (i.e. bag scene)
+
+    public static SceneType CurrentPrimarySceneType { get; set; } = SceneType.None;
     public static Scene CurrentPrimaryScene => SceneManager.GetSceneByName(SceneName[CurrentPrimarySceneType]);
     
+    /// <summary>
+    /// Get the SceneType of a given Scene
+    /// </summary>
+    /// <param name="sceneToCheck"></param>
+    /// <returns></returns>
+    public static SceneType SceneToSceneType(Scene sceneToCheck)
+    {
+        foreach (var (sceneType, name) in SceneName)
+        {
+            if (name == sceneToCheck.name)
+                return sceneType;
+        }
+
+        return SceneType.None;
+    }
     
     /// <summary>
     /// Determines whether a scene with a given name is loaded
@@ -46,7 +62,7 @@ public static class CustomSceneManager
     /// <summary>
     /// Loads a scene with a given name and specified loading mode
     /// </summary>
-    /// <param name="sceneName">String name of the scene to load</param>
+    /// <param name="sceneType">SceneType of the scene to load</param>
     /// <param name="mode">Load mode (defaults to Additive)</param>
     public static void LoadScene(SceneType sceneType, LoadSceneMode mode = LoadSceneMode.Additive)
     {
@@ -61,14 +77,16 @@ public static class CustomSceneManager
     /// </summary>
     private static void UnloadPrimaryScene()
     {
-        if (CurrentPrimaryScene.IsValid() && CurrentPrimaryScene.isLoaded)
-            SceneManager.UnloadSceneAsync(CurrentPrimaryScene);
+        if (!SceneName.ContainsKey(CurrentPrimarySceneType) || !CurrentPrimaryScene.IsValid() || !CurrentPrimaryScene.isLoaded)
+            return;
+        
+        SceneManager.UnloadSceneAsync(CurrentPrimaryScene);
     }
     
     /// <summary>
     /// Unloads current primary scene and loads a scene as the primary scene
     /// </summary>
-    /// <param name="sceneName">String name of scene to load as primary</param>
+    /// <param name="sceneType">SceneType of scene to load as primary</param>
     public static void LoadPrimaryScene(SceneType sceneType)
     {   
         UnloadPrimaryScene();
@@ -80,7 +98,7 @@ public static class CustomSceneManager
     /// Switches a given object to another scene
     /// </summary>
     /// <param name="obj"></param>
-    /// <param name="sceneName"></param>
+    /// <param name="sceneType"></param>
     /// <exception cref="Exception">Throws exception if object's transform parent is not null</exception>
     public static void MoveObjectToScene(GameObject obj, SceneType sceneType)
     {

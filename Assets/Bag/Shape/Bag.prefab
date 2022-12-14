@@ -779,6 +779,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenResizer: {fileID: 3898554781265317203}
+  bagDimensionPrefab: {fileID: 4013553498147916063, guid: d08bfda17c19d8745bc639fadc76d51f, type: 3}
+  carrierTransform: {fileID: 0}
 --- !u!1 &7568286697733409633
 GameObject:
   m_ObjectHideFlags: 0
