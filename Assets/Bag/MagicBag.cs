@@ -14,7 +14,7 @@ namespace Bag
         [SerializeField] private TweenResizer tweenResizer;
         [SerializeField] private GameObject bagDimensionPrefab;
         [SerializeField] private Transform carrierTransform;
-        private BagDimensionManager _bagDimensionManager;
+        private BagDimension _bagDimension;
 
         private void Awake()
         {
@@ -22,23 +22,23 @@ namespace Bag
             
             // Initialize Bag Dimension
             var bagDimension = Instantiate(bagDimensionPrefab);
-            _bagDimensionManager = bagDimension.GetComponent<BagDimensionManager>();
-            _bagDimensionManager.SetCameraFollowTarget(carrierTransform);
+            _bagDimension = bagDimension.GetComponent<BagDimension>();
+            _bagDimension.SetCameraFollowTarget(carrierTransform);
         }
 
         private void Start()
         {
-            _bagDimensionManager.OnStoredObjectsCountChanged.AddListener(UpdateBagShape);
+            _bagDimension.OnStoredObjectsCountChanged.AddListener(UpdateBagShape);
         }
         
         public void EnableDimensionCameraFollow()
         {
-            _bagDimensionManager.EnableCameraFollow();
+            _bagDimension.EnableCameraFollow();
         }
         
         public void DisableDimensionCameraFollow()
         {
-            _bagDimensionManager.DisableCameraFollow();
+            _bagDimension.DisableCameraFollow();
         }
         
         /// <summary>
@@ -47,12 +47,12 @@ namespace Bag
         /// <param name="objectTransform"></param>
         public void EnterBag(Transform objectTransform)
         {
-            if (_bagDimensionManager == null)
+            if (_bagDimension == null)
                 return;
             
-            var dimensionEntryPoint = _bagDimensionManager.EntryPoint.position;
+            var dimensionEntryPoint = _bagDimension.EntryPoint.position;
             objectTransform.position = new Vector3(dimensionEntryPoint.x, dimensionEntryPoint.y, objectTransform.position.z);
-            _bagDimensionManager.StoreObject(objectTransform);
+            _bagDimension.StoreObject(objectTransform);
         }
 
         /// <summary>
@@ -61,11 +61,11 @@ namespace Bag
         /// <param name="objectTransform"></param>
         public void ExitBag(Transform objectTransform)
         {
-            if (_bagDimensionManager == null)
+            if (_bagDimension == null)
                 return;
             
             objectTransform.position = new Vector3(transform.position.x, transform.position.y, objectTransform.position.z);
-            _bagDimensionManager.ReleaseObject(objectTransform);
+            _bagDimension.ReleaseObject(objectTransform);
         }
         
         /// <summary>

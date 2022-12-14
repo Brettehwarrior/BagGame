@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 namespace Bag.Dimension
 {
-    public class BagDimensionManager : MonoBehaviour
+    public class BagDimension : MonoBehaviour
     {
         [SerializeField] private Transform entryPoint;
         [SerializeField] private Transform storedObjectsParent;
