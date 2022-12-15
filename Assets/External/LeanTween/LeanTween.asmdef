@@ -1,11 +1,7 @@
 {
-    "name": "Bag",
+    "name": "LeanTween",
     "rootNamespace": "",
-    "references": [
-        "GUID:748baa3e305b3974491f2c46c0353295",
-        "GUID:6683ef6edf20d93438b014f114698ca9",
-        "GUID:caccfbdb442cdc64fa722b4c5585521f"
-    ],
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

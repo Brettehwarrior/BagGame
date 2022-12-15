@@ -206,6 +206,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4013553498147916256}
+  - component: {fileID: 8262919977231638200}
   m_Layer: 0
   m_Name: Bag Dimension
   m_TagString: Untagged
@@ -232,6 +233,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8262919977231638200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4013553498147916063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b8aba70c6b998a48aecac8617c6bf43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entryPoint: {fileID: 4013553497516002914}
+  storedObjectsParent: {fileID: 2095219624673004328}
+  boundedFollow: {fileID: 3419411718529840777}
 --- !u!1 &4013553498415127048
 GameObject:
   m_ObjectHideFlags: 0

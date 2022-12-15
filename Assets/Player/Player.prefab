@@ -19,10 +19,9 @@ GameObject:
   - component: {fileID: 4774147781209077658}
   - component: {fileID: 9042819724404422901}
   - component: {fileID: 7149285536503528281}
-  - component: {fileID: 6316530944867384452}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -215,7 +214,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ade365eeb8bd904485de021dd5e9d0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standingFriction: 1000
+  bag: {fileID: 1564199018}
+  bagParentTransform: {fileID: 7030794662693017146}
   walkAcceleration: 40
   maxWalkSpeed: 20
   groundFriction: 50
@@ -223,6 +223,7 @@ MonoBehaviour:
   maxAirSpeed: 22
   airFriction: 40
   jumpSpeed: 16
+  gravityScale: 1
   landingHorizontalSpeedMultiplier: 0.2
 --- !u!114 &4774147781209077658
 MonoBehaviour:
@@ -275,21 +276,6 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0.1, z: 0}
     m_Extent: {x: 1.27, y: 0.92, z: 0}
   heldItemPosition: {fileID: 4594419048293117284}
---- !u!114 &6316530944867384452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 948605347449981316}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70e80eb6bc5948c448587ccb61670a0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bag: {fileID: 1564199018}
-  bagTransform: {fileID: 7568286698641908099}
-  bagParent: {fileID: 7030794662693017146}
 --- !u!1 &5432279068740299644
 GameObject:
   m_ObjectHideFlags: 0
@@ -652,6 +638,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7030794662693017146}
     m_Modifications:
+    - target: {fileID: 373315223, guid: ca1d0f811a58a3241bcd9f2b3da8d6ec, type: 3}
+      propertyPath: carrierTransform
+      value: 
+      objectReference: {fileID: 577219299424229898}
     - target: {fileID: 7568286697423010642, guid: ca1d0f811a58a3241bcd9f2b3da8d6ec, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.735511

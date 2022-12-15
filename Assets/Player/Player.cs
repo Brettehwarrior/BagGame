@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Bag;
 using Bag.Dimension;
 using Items;
 using Player.StateMachine;
@@ -16,12 +17,18 @@ namespace Player
         private PlayerInputHandler _inputHandler;
         private PlayerMovement _playerMovement;
         private ItemGrabber _itemGrabber;
-        private PlayerBagUser _bagUser;
         private RaycastSideChecker _sideChecker;
 
         private PlayerStateMachine _stateMachine;
      
         // Properties
+        [Header("Bag properties")]
+        [SerializeField] private MagicBag bag;
+        public MagicBag Bag => bag;
+        [SerializeField] private Transform bagParentTransform;
+        public Transform BagParentTransform => bagParentTransform;
+        public Transform OriginalParent { get; private set; }
+        
         [Header("Movement Values")]
         
         [Tooltip("Acceleration while on ground")]
@@ -70,13 +77,13 @@ namespace Player
         public float LandingHorizontalSpeedMultiplier => landingHorizontalSpeedMultiplier;
 
         // Status
+        public bool InBag { get; set; }
         public Vector2 CurrentVelocity => _playerMovement.CurrentVelocity;
         public bool IsGrounded => _sideChecker.Bottom;
         public bool IsCollidingLeft => _sideChecker.Left;
         public bool IsCollidingRight => _sideChecker.Right;
         public Vector2 MovementInput => _inputHandler.MovementInput;
         public bool EnterExitBagInputDown => _inputHandler.EnterExitBagInputDown;
-        public bool InBag => _bagUser.InBag;
         public bool JumpInputDown => _inputHandler.JumpInputDown;
         
         private void Awake()
@@ -84,7 +91,6 @@ namespace Player
             _inputHandler = GetComponent<PlayerInputHandler>();
             _playerMovement = GetComponent<PlayerMovement>();
             _itemGrabber = GetComponent<ItemGrabber>();
-            _bagUser = GetComponent<PlayerBagUser>();
             _sideChecker = GetComponent<RaycastSideChecker>();
         }
 
@@ -92,6 +98,7 @@ namespace Player
         {
             SubscribeInputActions();
             InitializeStateMachine();
+            OriginalParent = transform.parent;
         }
 
         private void InitializeStateMachine()
@@ -128,16 +135,6 @@ namespace Player
         private void TryPickUpItem()
         {
             _itemGrabber.TryPickUpDropItem();
-        }
-
-        public void EnterBag()
-        {
-            _bagUser.EnterBag();
-        }
-        
-        public void ExitBag()
-        {
-            _bagUser.ExitBag();
         }
         
         public void Jump()
