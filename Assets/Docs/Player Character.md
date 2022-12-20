@@ -1,3 +1,4 @@
+#core
 # Player Character
 The player character is the avatar which the player controls to move
 # Player State Machine
@@ -10,5 +11,4 @@ The possible player states are:
 - Landing
 - Entering bag
 - Exiting bag
-![[Pasted image 20221214233417.png]]
-(TODO: updated diagram)
+![[Pasted image 20221217135240.png]]

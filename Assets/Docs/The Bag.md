@@ -1,3 +1,4 @@
+#core
 # The Bag
 The bag is the primary core gameplay mechanic of Bag Game. The bag is a physical object carried by the player at most points in the game. It holds an **infinitely expandable pocket dimension**.
 At any point, the [[Player Character]] can enter the bag's entrance into the bag dimension. Any [[Items]] carried and dropped in the bag dimension by the player will remain inside the bag dimension and persist between scenes.
