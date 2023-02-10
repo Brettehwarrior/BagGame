@@ -86,6 +86,7 @@ namespace Player
         public Vector2 MovementInput => _inputHandler.MovementInput;
         public bool EnterExitBagInputDown => _inputHandler.EnterExitBagInputDown;
         public bool JumpInputDown => _inputHandler.JumpInputDown;
+        public bool StashItemInputDown => _inputHandler.StashItemInputDown;
         
         private void Awake()
         {
@@ -111,7 +112,6 @@ namespace Player
         private void SubscribeInputActions()
         {
             _inputHandler.OnPickUpItemInput.AddListener(TryPickUpItem); // TODO: This gets fired once on play (because left click starts game maybe?)
-            _inputHandler.OnStashItemInput.AddListener(TryStashItem);
         }
 
         private void Update()
@@ -139,11 +139,9 @@ namespace Player
             _itemGrabber.TryPickUpDropItem();
         }
 
-        private void TryStashItem()
+        public void TryStashItem()
         {
-            Debug.Log("stashed Item");
-            Transform test = _itemGrabber.HeldItemStash();
-            bag.EnterBag(test);
+            bag.EnterBag(_itemGrabber.HeldItemStash());
         }
         
         public void Jump()

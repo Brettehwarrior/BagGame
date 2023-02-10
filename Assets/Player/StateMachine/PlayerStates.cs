@@ -20,7 +20,8 @@ namespace Player.StateMachine
         private readonly PlayerState _wallSlideState;
         private readonly PlayerState _enterBagState;
         private readonly PlayerState _exitBagState;
-        
+        private readonly PlayerState _stashItemState;
+
         // Entry state
         public PlayerState StartState => _idleState;
         
@@ -37,6 +38,7 @@ namespace Player.StateMachine
             _wallSlideState = new PlayerWallSlideState(_player);
             _enterBagState = new PlayerEnterBagState(_player);
             _exitBagState = new PlayerExitBagState(_player);
+            _stashItemState = new PlayerStashItemState(_player);
             
             CreateTransitions();
         }
@@ -52,6 +54,7 @@ namespace Player.StateMachine
             _fallState.AddTransition(enterBagTransition);
             _landState.AddTransition(enterBagTransition);
             _wallSlideState.AddTransition(enterBagTransition);
+            _stashItemState.AddTransition(enterBagTransition);
             
             // Transitions to exit bag state
             var exitBagTransition = new StateTransition(_exitBagState, () =>
@@ -67,12 +70,22 @@ namespace Player.StateMachine
             var jumpTransition = new StateTransition(_jumpState, () => _player.JumpInputDown);
             _idleState.AddTransition(jumpTransition);
             _walkState.AddTransition(jumpTransition);
-            
+
+            // Transitions for stashing state
+            var stashTransition = new StateTransition(_stashItemState, () => 
+            _player.StashItemInputDown && _player.heldItem != null && !_player.InBag);
+            _idleState.AddTransition(stashTransition);
+            _walkState.AddTransition(stashTransition);
+            _jumpState.AddTransition(stashTransition);
+            _fallState.AddTransition(stashTransition);
+            _landState.AddTransition(stashTransition);
+
             // Transitions to fall state
             var fallTransition = new StateTransition(_fallState, () => _player.CurrentVelocity.y < 0 && !_player.IsGrounded);
             _jumpState.AddTransition(fallTransition);
             _idleState.AddTransition(fallTransition);
             _walkState.AddTransition(fallTransition);
+            _stashItemState.AddTransition(fallTransition);
             _wallSlideState.AddTransition(new StateTransition(_fallState, () =>
                 !(_player.IsCollidingLeft || _player.IsCollidingRight)));
             
@@ -87,6 +100,7 @@ namespace Player.StateMachine
             _landState.AddTransition(new StateTransition(_idleState, () => true)); // Landing state animation will probably be cancellable
             _enterBagState.AddTransition(new StateTransition(_idleState, () => true));
             _exitBagState.AddTransition(new StateTransition(_idleState, () => true));
+            _stashItemState.AddTransition(new StateTransition(_idleState, () => true));
             
             // Transitions to land state
             var landTransition = new StateTransition(_landState, () => _player.IsGrounded);
@@ -98,6 +112,7 @@ namespace Player.StateMachine
                 _player.IsCollidingLeft || _player.IsCollidingRight);
             _jumpState.AddTransition(wallSlideTransition);
             _fallState.AddTransition(wallSlideTransition);
+            _stashItemState.AddTransition(wallSlideTransition);
         }
     }
 }
