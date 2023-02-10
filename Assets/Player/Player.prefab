@@ -181,6 +181,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: a4b68033-7b29-4e13-9d1a-d4054083c349
     m_ActionName: Basic Movement/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2ad8b98c-7eeb-4035-992a-879bc1707033
+    m_ActionName: Basic Movement/Stash Item[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Basic Movement
@@ -202,6 +206,7 @@ MonoBehaviour:
   pickUpActionReference: {fileID: -734753121269108376, guid: b82c872b9032e4a40a61d9eb4f875bcd, type: 3}
   enterExitBagActionReference: {fileID: 6333746007214408764, guid: b82c872b9032e4a40a61d9eb4f875bcd, type: 3}
   jumpActionReference: {fileID: 8271838805242729835, guid: b82c872b9032e4a40a61d9eb4f875bcd, type: 3}
+  stashActionReference: {fileID: 6100256634261380279, guid: b82c872b9032e4a40a61d9eb4f875bcd, type: 3}
 --- !u!114 &6254691805779837168
 MonoBehaviour:
   m_ObjectHideFlags: 0

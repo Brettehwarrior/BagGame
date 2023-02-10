@@ -47,7 +47,7 @@ namespace Bag
         /// <param name="objectTransform"></param>
         public void EnterBag(Transform objectTransform)
         {
-            if (_bagDimension == null)
+            if (_bagDimension == null || objectTransform == null)
                 return;
             
             var dimensionEntryPoint = _bagDimension.EntryPoint.position;

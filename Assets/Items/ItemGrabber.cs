@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using UnityEngine;
 
 namespace Items
@@ -11,7 +12,18 @@ namespace Items
         [SerializeField] private Bounds bounds;
         [SerializeField] private Transform heldItemPosition;
 
-        private IItem _heldItem;
+        public IItem _heldItem { get; private set; }
+
+        public Transform HeldItemStash()
+        {
+            Transform heldItemTransform = null;
+            if (_heldItem != null)
+            {
+                heldItemTransform = heldItemPosition.GetChild(0);
+                DropItem();
+            }
+            return heldItemTransform;
+        }
 
         public void TryPickUpDropItem()
         {
