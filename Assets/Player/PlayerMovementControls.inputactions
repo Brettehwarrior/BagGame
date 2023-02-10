@@ -24,6 +24,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Stash Item",
+                    "type": "Button",
+                    "id": "2ad8b98c-7eeb-4035-992a-879bc1707033",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Enter Exit Bag",
                     "type": "Button",
                     "id": "2e4e8f95-dad0-4a87-b360-8b71b3fd295c",
@@ -172,6 +181,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "983aa0df-8139-454c-9371-b88a1642832b",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard Mouse",
+                    "action": "Stash Item",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b2a67c57-84ae-4e60-a1a8-2d2d8908bf0a",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Stash Item",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

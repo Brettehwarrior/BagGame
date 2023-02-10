@@ -11,15 +11,18 @@ namespace Player
         [SerializeField] private InputActionReference pickUpActionReference;
         [SerializeField] private InputActionReference enterExitBagActionReference;
         [SerializeField] private InputActionReference jumpActionReference;
+        [SerializeField] private InputActionReference stashActionReference;
         
         public Vector2 MovementInput { get; private set; }
         public UnityEvent OnPickUpItemInput { get; private set; }
+        public UnityEvent OnStashItemInput { get; private set; }
         public bool EnterExitBagInputDown { get; private set; }
         public bool JumpInputDown { get; private set; }
         
         private void Awake()
         {
             OnPickUpItemInput = new UnityEvent();
+            OnStashItemInput = new UnityEvent();
         }
 
         private void OnEnable()
@@ -28,6 +31,7 @@ namespace Player
             pickUpActionReference.action.Enable();
             enterExitBagActionReference.action.Enable();
             jumpActionReference.action.Enable();
+            stashActionReference.action.Enable();
         }
         
         private void OnDisable()
@@ -36,6 +40,7 @@ namespace Player
             pickUpActionReference.action.Disable();
             enterExitBagActionReference.action.Disable();
             jumpActionReference.action.Disable();
+            stashActionReference.action.Disable();
         }
 
         private void Start()
@@ -44,6 +49,7 @@ namespace Player
             moveActionReference.action.canceled += Move;
          
             pickUpActionReference.action.performed += PickUp;
+            stashActionReference.action.performed += Stash;
         }
 
         private void OnDestroy()
@@ -52,6 +58,7 @@ namespace Player
             moveActionReference.action.canceled -= Move;
             
             pickUpActionReference.action.performed -= PickUp;
+            stashActionReference.action.performed -= Stash;
         }
 
         private void Update()
@@ -69,6 +76,11 @@ namespace Player
         private void PickUp(InputAction.CallbackContext ctx)
         {
             OnPickUpItemInput.Invoke();
+        }
+
+        private void Stash(InputAction.CallbackContext ctx)
+        {
+            OnStashItemInput.Invoke();
         }
     }
 }

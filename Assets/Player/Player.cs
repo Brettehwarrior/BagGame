@@ -78,6 +78,7 @@ namespace Player
 
         // Status
         public bool InBag { get; set; }
+        public IItem heldItem => _itemGrabber._heldItem;
         public Vector2 CurrentVelocity => _playerMovement.CurrentVelocity;
         public bool IsGrounded => _sideChecker.Bottom;
         public bool IsCollidingLeft => _sideChecker.Left;
@@ -110,6 +111,7 @@ namespace Player
         private void SubscribeInputActions()
         {
             _inputHandler.OnPickUpItemInput.AddListener(TryPickUpItem); // TODO: This gets fired once on play (because left click starts game maybe?)
+            _inputHandler.OnStashItemInput.AddListener(TryStashItem);
         }
 
         private void Update()
@@ -135,6 +137,13 @@ namespace Player
         private void TryPickUpItem()
         {
             _itemGrabber.TryPickUpDropItem();
+        }
+
+        private void TryStashItem()
+        {
+            Debug.Log("stashed Item");
+            Transform test = _itemGrabber.HeldItemStash();
+            bag.EnterBag(test);
         }
         
         public void Jump()
