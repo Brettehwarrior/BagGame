@@ -15,14 +15,13 @@ namespace Player
         
         public Vector2 MovementInput { get; private set; }
         public UnityEvent OnPickUpItemInput { get; private set; }
-        public UnityEvent OnStashItemInput { get; private set; }
+        public bool StashItemInputDown { get; private set; }
         public bool EnterExitBagInputDown { get; private set; }
         public bool JumpInputDown { get; private set; }
         
         private void Awake()
         {
             OnPickUpItemInput = new UnityEvent();
-            OnStashItemInput = new UnityEvent();
         }
 
         private void OnEnable()
@@ -49,7 +48,6 @@ namespace Player
             moveActionReference.action.canceled += Move;
          
             pickUpActionReference.action.performed += PickUp;
-            stashActionReference.action.performed += Stash;
         }
 
         private void OnDestroy()
@@ -58,13 +56,13 @@ namespace Player
             moveActionReference.action.canceled -= Move;
             
             pickUpActionReference.action.performed -= PickUp;
-            stashActionReference.action.performed -= Stash;
         }
 
         private void Update()
         {
             EnterExitBagInputDown = enterExitBagActionReference.action.WasPerformedThisFrame();
             JumpInputDown = jumpActionReference.action.WasPerformedThisFrame();
+            StashItemInputDown = stashActionReference.action.WasPerformedThisFrame();
         }
 
         private void Move(InputAction.CallbackContext ctx)
@@ -76,11 +74,6 @@ namespace Player
         private void PickUp(InputAction.CallbackContext ctx)
         {
             OnPickUpItemInput.Invoke();
-        }
-
-        private void Stash(InputAction.CallbackContext ctx)
-        {
-            OnStashItemInput.Invoke();
         }
     }
 }
